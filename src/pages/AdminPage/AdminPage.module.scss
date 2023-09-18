@@ -1,0 +1,30 @@
+.form {
+  height: -webkit-fill-available;
+  width: 50%;
+  background-color: rgba(190, 190, 190, 0.27);
+  display: flex;
+  padding: 10px;
+  border-radius: 15px;
+  flex-direction: column;
+  gap:5px;
+
+  h3 {
+    margin: 0 auto 20px;
+  }
+}
+
+.btn {
+  composes: btn from '../../App.module.scss';
+  margin-top: auto;
+  align-self: end;
+
+  &:hover {
+    scale: 1.05;
+  }
+}
+
+.input {
+  composes: input from '../../App.module.scss';
+  height: 10px;
+  width: 90%;
+}

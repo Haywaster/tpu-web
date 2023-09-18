@@ -3,23 +3,23 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { MessageService } from '@service/MessageService';
 import debounce from 'lodash.debounce';
 
-const useSearchMessages = () => {
+const useUserFunctions = () => {
 	const [visibleSearch, setVisibleSearch] = useState<string>('');
 	const [debounceSearch, setDebounceSearch] = useState<string>('');
 	const queryClient = useQueryClient();
 	
 	const { isLoading, isError, data: messages, isSuccess } = useQuery(
-		['getAllMessages'],
+		['get all messages'],
 		() => MessageService.getAll(),
 		{ select: ({ data }) => data, enabled: !debounceSearch }
 	);
 	
 	const { mutate } = useMutation(
-		['searchMessage'],
+		['search message'],
 		() => MessageService.search(debounceSearch),
 		{
 			onSuccess(newData) {
-				queryClient.setQueryData(['getAllMessages'], newData);
+				queryClient.setQueryData(['get all messages'], newData);
 			}
 		}
 	);
@@ -44,4 +44,4 @@ const useSearchMessages = () => {
 	return { search: visibleSearch, searchHandler, isLoading, isError, messages, isSuccess };
 };
 
-export default useSearchMessages;
+export default useUserFunctions;

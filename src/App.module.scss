@@ -9,11 +9,60 @@
   &:hover {
     scale: 1.1;
   }
+}
 
-  &-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    height: 30px;
+.closeBnt {
+  composes: btn;
+  background: none;
+  cursor: pointer;
+  margin-left: 25px;
+}
+
+.input {
+  align-self: center;
+  height: 30px;
+  width: 50%;
+  outline: none;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.messages {
+  color: black;
+  padding-right: 20px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.keywords {
+  display: flex;
+  gap: 15px;
+  margin-left: auto;
+
+  h3 {
+    background-color: #d3d3d3;
   }
+}
+
+.noMessagesError {
+  margin: auto;
+  color: white;
+  font-size: 20pt;
+  text-align: center;
 }

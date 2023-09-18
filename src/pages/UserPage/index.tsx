@@ -1,15 +1,16 @@
-import useSearchMessages from '@utils/hooks/useSearchMessages';
+import useUserFunctions from '@utils/hooks/useUserFunctions';
 import Message from '@components/Message';
 import Layout from '@components/Layout';
 
-import styles from './UserPage.module.scss';
+import appStyles from '@/App.module.scss'
 
 const UserPage = () => {
-	const { isSuccess, isError, isLoading, messages } = useSearchMessages();
+	const { isSuccess, isError, isLoading, messages } = useUserFunctions();
 	
 	return (
 		<Layout isLoading={ isLoading } isSuccess={ isSuccess } isError={ isError }>
-				<div className={ styles.messages }>
+				<div className={ appStyles.messages }>
+					{ messages?.length === 0 && <p className={appStyles.noMessagesError}>There are no messages :(</p> }
 					{ messages?.map(message => (
 						<Message key={ message.id } { ...message }/>
 					)) }
