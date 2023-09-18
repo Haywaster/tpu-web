@@ -11,8 +11,8 @@ export const MessageService = {
 	
 	async search(inputValue: string) {
 		if (inputValue) {
-			const { data } = await axios<IMessage[]>(`/messages?search=${ inputValue }`);
-			return data;
+			const { data } = await axios.get<IMessage[]>(`/messages?search=${ inputValue }`);
+			return { data };
 		}
 	},
 	
