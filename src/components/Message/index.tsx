@@ -1,4 +1,3 @@
-import React from 'react';
 import { IMessage } from '@types';
 
 import appStyles from '@/App.module.scss';
@@ -19,11 +18,11 @@ const Message = ({ id, title, keywords, desc }: IMessage) => {
 		<div key={ id } className={ appStyles.message }>
 			<div className={ appStyles.titleWrapper }>
 				<h2>{ title }</h2>
-				<div className={ appStyles.keywords }>
+				<ol className={ appStyles.keywords }>
 					{ keywords.map((keyword, index) => (
-						<h3 key={ index }>{ keyword }</h3>
+						<li key={ index }>{ keyword }</li>
 					)) }
-				</div>
+				</ol>
 				{ isAdmin && <button onClick={ () => deleteHandler(id) } className={ appStyles.closeBnt }>✖</button> }
 			</div>
 			<p>{ desc }</p>

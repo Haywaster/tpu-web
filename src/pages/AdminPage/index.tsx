@@ -1,13 +1,15 @@
-import React, { FC } from 'react';
-import useUserFunctions from '@utils/hooks/useUserFunctions';
-import Layout from '@components/Layout';
-import appStyles from '@/App.module.scss';
-import Message from '@components/Message';
-import UseAdminFunctions from '@utils/hooks/useAdminFunctions';
-import styles from './AdminPage.module.scss';
-import Loader from '@components/Loader';
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useUserFunctions from '@utils/hooks/useUserFunctions';
+import UseAdminFunctions from '@utils/hooks/useAdminFunctions';
 import useToken from '@utils/hooks/useToken';
+
+import Message from '@components/Message';
+import Loader from '@components/Loader';
+import Layout from '@components/Layout';
+
+import appStyles from '@/App.module.scss';
+import styles from './AdminPage.module.scss';
 
 const AdminPage: FC = () => {
 	const { isSuccess, isError, isLoading, messages } = useUserFunctions();

@@ -1,4 +1,3 @@
-import React from 'react';
 import Layout from '@components/Layout';
 import { aboutPageText } from '@assets/consts';
 import styles from './AboutPage.module.scss';

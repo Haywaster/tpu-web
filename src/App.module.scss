@@ -52,12 +52,18 @@
 }
 
 .keywords {
+  padding: 0;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-content: flex-end;
+  font-weight: bold;
   gap: 15px;
   margin-left: auto;
 
-  h3 {
+  li {
     background-color: #d3d3d3;
+    list-style-type: none;
   }
 }
 

@@ -5,10 +5,11 @@ import Layout from '@components/Layout';
 import appStyles from '@/App.module.scss';
 import styles from './UserPage.module.scss';
 import Loader from '@components/Loader';
+import useLogData from '@utils/hooks/useLogData';
 
 const UserPage = () => {
-	const { searchHandler, search } = useUserFunctions();
-	const { isSuccess, isError, isLoading, messages } = useUserFunctions();
+	const { searchHandler, search, isSuccess, isError, isLoading, messages, debounceSearch } = useUserFunctions();
+	const {downloadLogs} = useLogData(debounceSearch)
 	
 	return (
 		<Layout>
@@ -30,6 +31,8 @@ const UserPage = () => {
 						)) }
 					</div>
 				) }
+				<button onClick={ downloadLogs }>Download Logs</button>
+				
 			</section>
 		</Layout>
 	);

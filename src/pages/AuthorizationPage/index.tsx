@@ -1,6 +1,5 @@
 import Layout from '@components/Layout';
 import adminStyles from '@pages/AdminPage/AdminPage.module.scss';
-import React from 'react';
 import UseAdminFunctions from '@utils/hooks/useAdminFunctions';
 
 const AuthorizationPage = () => {

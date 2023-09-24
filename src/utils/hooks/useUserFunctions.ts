@@ -2,6 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { MessageService } from '@service/MessageService';
 import debounce from 'lodash.debounce';
+import { ILogData } from '@/@types';
 
 const useUserFunctions = () => {
 	const [visibleSearch, setVisibleSearch] = useState<string>('');
@@ -25,7 +26,9 @@ const useUserFunctions = () => {
 	);
 	
 	const updateValueDebounce = useCallback(
-		debounce(str => setDebounceSearch(str), 300), []
+		debounce(str => {
+			setDebounceSearch(str);
+			}, 300), []
 	);
 	
 	const searchHandler = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +44,7 @@ const useUserFunctions = () => {
 		}
 	}, [debounceSearch, mutate]);
 	
-	return { search: visibleSearch, searchHandler, isLoading, isError, messages, isSuccess };
+	return { search: visibleSearch, searchHandler, isLoading, isError, messages, isSuccess, debounceSearch };
 };
 
 export default useUserFunctions;
