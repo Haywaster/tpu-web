@@ -10,3 +10,14 @@ export interface IMessageSend extends Omit<IMessage, "keywords" | "id">{
 }
 
 export interface IMessagePost extends Omit<IMessage, "id">{}
+
+export interface IAdminFormData {
+	login: string
+	password: string
+}
+
+export interface ILinks {
+	name: string
+	imageSrc: string
+	href: string
+}

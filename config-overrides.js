@@ -9,5 +9,6 @@ module.exports = override(
 		'@pages': path.resolve(__dirname, 'src/pages'),
 		'@service': path.resolve(__dirname, 'src/service'),
 		'@utils': path.resolve(__dirname, 'src/utils'),
+		'@assets': path.resolve(__dirname, 'src/assets'),
 	})
 );

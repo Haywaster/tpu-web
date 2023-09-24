@@ -1,0 +1,17 @@
+.socialWrapper {
+  text-align: center;
+  display: flex;
+  margin: 0;
+  padding: 0;
+
+  img {
+    width: 40px;
+    background-color: #fff;
+    border-radius: 100%;
+    padding: 10px;
+  }
+
+  li {
+    list-style-type: none;
+  }
+}

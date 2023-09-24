@@ -21,7 +21,7 @@
 .input {
   align-self: center;
   height: 30px;
-  width: 50%;
+  width: 250px;
   outline: none;
   border: none;
   padding: 10px;
@@ -32,6 +32,7 @@
   color: black;
   padding-right: 20px;
   height: 100%;
+  width: fit-content;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
