@@ -22,6 +22,9 @@
 			],
 			"@assets/*": [
 				"assets/*"
+			],
+			"@redux/*": [
+				"redux/*"
 			]
 		},
 		"target": "es5",

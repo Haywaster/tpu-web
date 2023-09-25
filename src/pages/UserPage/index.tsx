@@ -5,11 +5,23 @@ import Layout from '@components/Layout';
 import appStyles from '@/App.module.scss';
 import styles from './UserPage.module.scss';
 import Loader from '@components/Loader';
-import useLogData from '@utils/hooks/useLogData';
+import { getLogData } from '@utils/libs/getLogData';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addLog } from '@redux/slices/logSlice';
+import { ILogData } from '@/@types';
 
 const UserPage = () => {
 	const { searchHandler, search, isSuccess, isError, isLoading, messages, debounceSearch } = useUserFunctions();
-	const {downloadLogs} = useLogData(debounceSearch)
+	const dispatch = useDispatch();
+	
+	useEffect(() => {
+		if (debounceSearch) {
+			const action: string = `Moved to this URL: "${ debounceSearch }"`;
+			const logData: ILogData = getLogData(action);
+			dispatch(addLog(logData));
+		}
+	}, [debounceSearch, dispatch]);
 	
 	return (
 		<Layout>
@@ -31,8 +43,6 @@ const UserPage = () => {
 						)) }
 					</div>
 				) }
-				<button onClick={ downloadLogs }>Download Logs</button>
-				
 			</section>
 		</Layout>
 	);

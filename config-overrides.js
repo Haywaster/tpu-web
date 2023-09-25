@@ -10,5 +10,6 @@ module.exports = override(
 		'@service': path.resolve(__dirname, 'src/service'),
 		'@utils': path.resolve(__dirname, 'src/utils'),
 		'@assets': path.resolve(__dirname, 'src/assets'),
+		'@redux': path.resolve(__dirname, 'src/redux'),
 	})
 );

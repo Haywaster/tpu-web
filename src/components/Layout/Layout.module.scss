@@ -6,11 +6,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: darkslategray;
+  background: linear-gradient(90deg, #adeaaf, #5e9666, #3481bd);
 }
 
 header {
   width: 100%;
+}
+
+.btn {
+  composes: btn from '../../App.module.scss';
+
+  &:hover {
+    scale: none;
+  }
 }
 
 .rowWrapper {

@@ -7,12 +7,12 @@ const AboutPage = () => {
 	return (
 		<Layout>
 			<div className={ styles.aboutWrapper }>
-				<h2>{ AboutInfo.header }</h2>
-				<p>{ AboutInfo.welcome }</p>
-				<p>{ AboutInfo.expectations }</p>
+				<h2>{ AboutInfo.HEADER }</h2>
+				<p>{ AboutInfo.WELCOME }</p>
+				<p>{ AboutInfo.EXPECTATION }</p>
 				<ol>{ aboutPageText.map((text, index) => <li key={ index }>{ text }</li>) }</ol>
-				<p>{ AboutInfo.mission }</p>
-				<p>{ AboutInfo.conclusion }</p>
+				<p>{ AboutInfo.MISSION }</p>
+				<p>{ AboutInfo.CONCLUSION }</p>
 			</div>
 		</Layout>
 	);

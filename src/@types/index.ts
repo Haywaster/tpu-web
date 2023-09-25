@@ -27,3 +27,8 @@ export interface ILogData {
 	time: string;
 	action: string;
 }
+
+export interface ILinkConfig {
+	label: string,
+	path: string
+}

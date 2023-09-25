@@ -13,5 +13,10 @@
 
   li {
     list-style-type: none;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      scale: 1.1;
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { ILinks } from '@types';
+import { AppRoutes } from '@/@types/enums';
 
 export const socialLinks: ILinks[] = [
 	{ name: 'VK', imageSrc: 'vk.png', href: 'https://vk.com/haywaster02' },
@@ -12,4 +13,10 @@ export const aboutPageText: string[] = [
 	'Share Your Messages: We provide a space not only for viewing but also for contributing your own creative messages. Share your insights and connect with the world.',
 	'Community of Like-minded Individuals: Connect with people who share your interests. Discuss topics, exchange opinions, and make new friends.',
 	'User-Friendly Experience: We\'ve designed our site with your comfort in mind. Navigation is intuitive, and you\'ll feel right at home.'
+];
+
+export const linksConfig = [
+	{ label: 'Main', path: AppRoutes.MAIN },
+	{ label: 'About website', path: AppRoutes.ABOUT },
+	{ label: 'Contacts', path: AppRoutes.CONTACTS }
 ];
