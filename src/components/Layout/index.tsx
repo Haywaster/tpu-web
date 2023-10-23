@@ -11,6 +11,7 @@ import { linksConfig } from '@assets/consts';
 import { ILogData } from '@types';
 import styles from './Layout.module.scss';
 import useToken from '@utils/hooks/useToken';
+import { BsCart2 } from 'react-icons/bs';
 
 const Layout: ComponentType<{
 	children: ReactNode
@@ -27,25 +28,31 @@ const Layout: ComponentType<{
 		dispatch(addLog(logData));
 	};
 	
-	const getActiveLinkStyles = (path: string): { color: string } => (
-		{ 'color': pathname === path ? '#fffffffa' : '#eeeaea8a' }
-	);
+	const getActiveLink = (path: string): string => pathname === path ? styles.active : '';
 	
 	return (
 		<div className={ styles.layout }>
 			<header>
 				<nav className={ styles.navPanel }>
-					{ isToken && <Link style={ getActiveLinkStyles('/admin') }
-						key='admin'
-						to='/admin'
-						onClick={ () => handleLinkClick('/admin') }>Admin</Link> }
+					{ isToken &&
+						<Link
+							className={ getActiveLink('/admin') }
+							key='admin'
+							to='/admin'
+							onClick={ () => handleLinkClick('/admin') }>Admin</Link> }
 					{ linksConfig.map(el => (
-						<Link style={ getActiveLinkStyles(el.path) }
+						<Link
+							className={ getActiveLink(el.path) }
 							key={ el.path }
 							to={ el.path }
 							onClick={ () => handleLinkClick(el.path) }>{ el.label }</Link>
 					)) }
 					<button className={ styles.btn } onClick={ downloadLogs }>Download Logs</button>
+					<Link
+						className={ getActiveLink('/cart') }
+						key={ 'cart' }
+						to={ '/cart' }
+						onClick={ () => handleLinkClick('/cart') }><BsCart2/></Link>
 				</nav>
 			</header>
 			<main className={ projectStyles }>

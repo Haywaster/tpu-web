@@ -1,9 +1,9 @@
 import Layout from '@components/Layout';
 import adminStyles from '@pages/AdminPage/AdminPage.module.scss';
-import UseAdminFunctions from '@utils/hooks/useAdminFunctions';
+import useAdminFunctions from '@utils/hooks/useAdminFunctions';
 
 const AuthorizationPage = () => {
-	const { register, handleSubmit, onSubmit } = UseAdminFunctions();
+	const { register, handleSubmit, onSubmit } = useAdminFunctions();
 	
 	return (
 		<Layout>

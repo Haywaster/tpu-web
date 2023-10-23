@@ -9,6 +9,8 @@ const useLogData = () => {
 			return `Date: ${ action.date }, Time: ${ action.time }, Action: ${ action.action }`;
 		}).join('\n');
 		
+		debugger
+		
 		const blob = new Blob([logData], { type: 'text/plain' });
 		const url = URL.createObjectURL(blob);
 		

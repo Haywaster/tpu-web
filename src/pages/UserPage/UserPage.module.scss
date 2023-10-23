@@ -1,10 +1,13 @@
 .userMessageWrapper {
-  height: 250px;
+  width: -webkit-fill-available;
+  background-color: rgba(0, 0, 0, 0.1098039216);
+  padding: 40px;
+  border-radius: 10px;
+  flex-grow: 1;
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 50%;
-  gap: 15px;
+  gap: 50px;
 }
 
 .loaderWrapper {
@@ -12,4 +15,36 @@
   justify-content: center;
   height: 100%;
   width: 100%;
+}
+
+.searchWrapper {
+  font-size: 20px;
+  display: flex;
+  gap: 100px;
+  align-items: center;
+  border-bottom: 1px solid;
+  height: 50px;
+}
+
+.filterList {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+
+  li {
+    color: #eeeaea8a;
+    font-weight: 500;
+    transition: 0.15s ease-in-out;
+    cursor: pointer;
+
+    &.active {
+      color: #FFFF
+    }
+
+    &:hover {
+      color: #FFFF
+    }
+  }
 }

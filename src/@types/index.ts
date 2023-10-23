@@ -1,15 +1,17 @@
-export interface IMessage {
-	id: string,
-	title: string,
-	keywords: string[],
-	desc: string
+export interface IPost {
+	id?: string,
+	image: string,
+	name: string,
+	description: string
+	price: number,
+	category: string
 }
 
-export interface IMessageSend extends Omit<IMessage, 'keywords' | 'id'> {
+export interface IMessageSend extends Omit<IPost, 'keywords' | 'id'> {
 	keywords: string;
 }
 
-export interface IMessagePost extends Omit<IMessage, 'id'> {}
+export interface IMessagePost extends Omit<IPost, 'id'> {}
 
 export interface IAdminFormData {
 	login: string;

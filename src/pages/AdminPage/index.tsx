@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUserFunctions from '@utils/hooks/useUserFunctions';
-import UseAdminFunctions from '@utils/hooks/useAdminFunctions';
+import useAdminFunctions from '@utils/hooks/useAdminFunctions';
 import useToken from '@utils/hooks/useToken';
 
-import Message from '@components/Message';
+import CardItem from 'components/CardItem';
 import Loader from '@components/Loader';
 import Layout from '@components/Layout';
 
@@ -13,7 +13,7 @@ import styles from './AdminPage.module.scss';
 
 const AdminPage: FC = () => {
 	const { isSuccess, isError, isLoading, messages } = useUserFunctions();
-	const { register, handleSubmit, onSubmit } = UseAdminFunctions();
+	const { register, handleSubmit, onSubmit } = useAdminFunctions();
 	const { isToken } = useToken();
 	const navigate = useNavigate();
 	
@@ -27,18 +27,18 @@ const AdminPage: FC = () => {
 				{ isLoading && <div className={ styles.loaderWrapper }><Loader/></div> }
 				{ isError && <p>An error has occurred</p> }
 				{ isSuccess && (
-					<div className={ appStyles.messages }>
-						{ messages?.length === 0 && <p className={ appStyles.noMessagesError }>There are no messages :(</p> }
+					<div className={ appStyles.cards }>
+						{ messages?.length === 0 && <p className={ appStyles.noCardsError }>There are no messages :(</p> }
 						{ messages?.map(message => (
-							<Message key={ message.id } { ...message }/>
+							<CardItem key={ message.id } { ...message }/>
 						)) }
 					</div>
 				) }
 				<form className={ styles.form } onSubmit={ handleSubmit(onSubmit) }>
 					<h3>Create post</h3>
-					<input required placeholder='Title' className={ styles.input } { ...register('title') } />
-					<input required placeholder='Description' className={ styles.input } { ...register('desc') } />
-					<input required placeholder='Keywords' className={ styles.input } { ...register('keywords') } />
+					{/*<input required placeholder='Title' className={ styles.input } { ...register('title') } />*/}
+					{/*<input required placeholder='Description' className={ styles.input } { ...register('desc') } />*/}
+					{/*<input required placeholder='Keywords' className={ styles.input } { ...register('keywords') } />*/}
 					<input className={ styles.btn } type='submit'/>
 				</form>
 			</section>

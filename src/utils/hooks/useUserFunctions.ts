@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { MessageService } from '@service/MessageService';
+import { PostService } from '@service/PostService';
 import debounce from 'lodash.debounce';
 
 const useUserFunctions = () => {
@@ -10,13 +10,13 @@ const useUserFunctions = () => {
 	
 	const { isLoading, isError, data: messages, isSuccess } = useQuery(
 		['get all messages'],
-		() => MessageService.getAll(),
+		() => PostService.getAll(),
 		{ select: ({ data }) => data, enabled: !debounceSearch }
 	);
 	
 	const { mutate } = useMutation(
 		['search message'],
-		() => MessageService.search(debounceSearch),
+		() => PostService.search(debounceSearch),
 		{
 			onSuccess(newData) {
 				queryClient.setQueryData(['get all messages'], newData);

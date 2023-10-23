@@ -16,7 +16,17 @@ export const aboutPageText: string[] = [
 ];
 
 export const linksConfig = [
-	{ label: 'Main', path: AppRoutes.MAIN },
-	{ label: 'About website', path: AppRoutes.ABOUT },
+	{ label: 'ClockClick', path: AppRoutes.MAIN },
+	{ label: 'About', path: AppRoutes.ABOUT },
 	{ label: 'Contacts', path: AppRoutes.CONTACTS }
+];
+
+export const filterItems = [
+	{ label: 'All' },
+	{ label: 'Quartz' },
+	{ label: 'Wristwatch' },
+	{ label: 'Desk' },
+	{ label: 'Wall' },
+	{ label: 'Floor' },
+	{ label: 'Smartwatches' }
 ];

@@ -1,19 +1,19 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IAdminFormData, ILogData, IMessagePost, IMessageSend } from '@types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { MessageService } from '@service/MessageService';
+import { PostService } from '@service/PostService';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getLogData } from '@utils/libs/getLogData';
 import { addLog } from '@redux/slices/logSlice';
 
-const UseAdminFunctions = () => {
+const useAdminFunctions = () => {
 	const { register, handleSubmit, reset } = useForm<IMessageSend | IAdminFormData>();
 	const queryClient = useQueryClient();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	
-	const { mutate } = useMutation(['create message'], (body: IMessagePost) => MessageService.post(body), {
+	const { mutate } = useMutation(['create message'], (body: IMessagePost) => PostService.post(body), {
 		onSuccess() {
 			queryClient.invalidateQueries(['get all messages']);
 			const action: string = `The message wes created"`;
@@ -34,13 +34,13 @@ const UseAdminFunctions = () => {
 			navigate('/admin');
 		} else {
 			const newKeyWords = data.keywords.split(', ');
-			mutate({ ...data, keywords: newKeyWords });
+			// mutate({ ...data, keywords: newKeyWords });
 		}
 		
 		reset();
 	};
 	
-	const { mutate: deleteMutate } = useMutation(['delete message'], (id: string) => MessageService.delete(id), {
+	const { mutate: deleteMutate } = useMutation(['delete message'], (id: string) => PostService.delete(id), {
 		onSuccess() {
 			queryClient.invalidateQueries(['get all messages']);
 			const action: string = `The message wes deleted"`;
@@ -52,4 +52,4 @@ const UseAdminFunctions = () => {
 	return { onSubmit, handleSubmit, register, deleteMutate };
 };
 
-export default UseAdminFunctions;
+export default useAdminFunctions;

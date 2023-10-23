@@ -1,8 +1,6 @@
 .layout {
-  height: calc(100vh - 30px);
-  padding: 15px;
+  height: 100vh;
   display: flex;
-  gap: 30px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -22,10 +20,11 @@ header {
 }
 
 .rowWrapper {
+  overflow: auto;
+  padding: 50px 100px;
   height: 100%;
-  width: 100%;
+  width: -webkit-fill-available;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -35,7 +34,22 @@ header {
 }
 
 .navPanel {
+  font-size: 18px;
+  padding: 10px 50px;
+  border-bottom: 1px solid;
+  background-color: #0000001c;
   display: flex;
   gap: 15px;
-  justify-content: end;
+
+  a {
+    color: #eeeaea8a;
+    &:first-child {
+      flex-grow: 1;
+      font-weight: 800;
+      color: #FFFF;
+    }
+    &.active {
+      color: #FFFF
+    }
+  }
 }
