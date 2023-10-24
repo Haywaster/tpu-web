@@ -1,9 +1,5 @@
 .layout {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
   background: linear-gradient(90deg, #adeaaf, #5e9666, #3481bd);
 }
 
@@ -20,9 +16,8 @@ header {
 }
 
 .rowWrapper {
-  overflow: auto;
+  gap: 20px;
   padding: 50px 100px;
-  height: 100%;
   width: -webkit-fill-available;
   display: flex;
   align-items: center;

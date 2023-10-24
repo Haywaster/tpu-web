@@ -1,5 +1,5 @@
-export interface IPost {
-	id?: string,
+export interface ICardData {
+	id: string,
 	image: string,
 	name: string,
 	description: string
@@ -7,11 +7,11 @@ export interface IPost {
 	category: string
 }
 
-export interface IMessageSend extends Omit<IPost, 'keywords' | 'id'> {
+export interface IMessageSend extends Omit<ICardData, 'keywords' | 'id'> {
 	keywords: string;
 }
 
-export interface IMessagePost extends Omit<IPost, 'id'> {}
+export interface IMessagePost extends Omit<ICardData, 'id'> {}
 
 export interface IAdminFormData {
 	login: string;

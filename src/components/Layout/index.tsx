@@ -16,11 +16,11 @@ import { BsCart2 } from 'react-icons/bs';
 const Layout: ComponentType<{
 	children: ReactNode
 }> = ({ children }) => {
-	const { isUser, isContact, isAbout, pathname } = usePathname();
+	const { isUser, isContact, isAbout, isCart, pathname } = usePathname();
 	const { isToken } = useToken();
 	const dispatch = useDispatch();
 	const { downloadLogs } = useLogData();
-	const projectStyles = isUser || isContact || isAbout ? styles.columnWrapper : styles.rowWrapper;
+	const projectStyles = isUser || isContact || isAbout ||isCart ? styles.columnWrapper : styles.rowWrapper;
 	
 	const handleLinkClick = (path: string) => {
 		const action: string = `Clicked on link with URL: ${ path }`;

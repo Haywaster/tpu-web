@@ -6,8 +6,9 @@ const usePathname = () => {
 	const isUser: boolean = pathname === '/';
 	const isContact: boolean = pathname === '/contacts';
 	const isAbout: boolean = pathname === '/about';
+	const isCart: boolean = pathname === '/cart';
 	
-	return { isUser, isContact, isAbout, pathname };
+	return { isUser, isContact, isAbout, pathname, isCart };
 };
 
 export default usePathname;

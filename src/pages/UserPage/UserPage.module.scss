@@ -48,3 +48,11 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .searchWrapper {
+    flex-direction: column-reverse;
+    gap: 10px;
+    height: auto;
+  }
+}

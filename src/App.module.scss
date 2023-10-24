@@ -103,6 +103,7 @@
 }
 
 .backSide {
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -151,4 +152,32 @@
   color: white;
   font-size: 20pt;
   text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .card {
+    p {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      padding: 5px;
+      font-size: 20px;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .card {
+    height: 300px;
+
+    h3 {
+      font-size: 20px;
+    }
+
+    p {
+      padding: 5px;
+      font-size: 15px;
+      line-height: 25px;
+    }
+  }
 }

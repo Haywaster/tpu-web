@@ -10,6 +10,7 @@ import AuthorizationPage from '@pages/AuthorizationPage';
 import ErrorPage from '@pages/ErrorPage';
 import AboutPage from '@pages/AboutPage';
 import ContactsPage from '@pages/ContactPage';
+import CartPage from '@pages/CartPage';
 
 import './index.css';
 
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
 		<>
 			<Route path='/' element={ <UserPage/> }/>
 			<Route path='/about' element={ <AboutPage/> }/>
+			<Route path='/cart' element={ <CartPage/> }/>
 			<Route path='/contacts' element={ <ContactsPage/> }/>
 			<Route path='/admin' element={ <AdminPage/> }/>
 			<Route path='/authorization' element={ <AuthorizationPage/> }/>
