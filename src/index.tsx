@@ -11,8 +11,12 @@ import ErrorPage from '@pages/ErrorPage';
 import AboutPage from '@pages/AboutPage';
 import ContactsPage from '@pages/ContactPage';
 import CartPage from '@pages/CartPage';
+import LendingPage from '@pages/LendingPage';
+
+import { AppRoutes } from '@assets/enums';
 
 import './index.css';
+import RegistrationPage from '@pages/RegistrationPage';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -20,18 +24,26 @@ const root = ReactDOM.createRoot(
 
 const queryClient = new QueryClient();
 
-const router = createBrowserRouter(
-	createRoutesFromElements(
-		<>
-			<Route path='/' element={ <UserPage/> }/>
-			<Route path='/about' element={ <AboutPage/> }/>
-			<Route path='/cart' element={ <CartPage/> }/>
-			<Route path='/contacts' element={ <ContactsPage/> }/>
-			<Route path='/admin' element={ <AdminPage/> }/>
-			<Route path='/authorization' element={ <AuthorizationPage/> }/>
-			<Route path='/*' element={ <ErrorPage/> }/>
-		</>
-	));
+const routes = (
+	<>
+		{/* Главные */}
+		<Route path={AppRoutes.MAIN} element={<UserPage />} />
+		<Route path={AppRoutes.LENDING} element={<LendingPage />} />
+		{/* Регистрация, авторизация */}
+		<Route path={AppRoutes.AUTHORIZATION} element={<AuthorizationPage />} />
+		<Route path={AppRoutes.REGISTRATION} element={<RegistrationPage />} />
+		{/* Для пользователя */}
+		<Route path={AppRoutes.ABOUT} element={<AboutPage />} />
+		<Route path={AppRoutes.CART} element={<CartPage />} />
+		{/* Для админа */}
+		<Route path={AppRoutes.CONTACTS} element={<ContactsPage />} />
+		<Route path={AppRoutes.ADMIN} element={<AdminPage />} />
+		{/* Остальные */}
+		<Route path={AppRoutes.ERROR} element={<ErrorPage />} />
+	</>
+);
+
+const router = createBrowserRouter(createRoutesFromElements(routes));
 
 root.render(
 	<Provider store={ store }>

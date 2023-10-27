@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 export interface ICardData {
 	id: string,
 	image: string,
@@ -31,6 +33,7 @@ export interface ILogData {
 }
 
 export interface ILinkConfig {
-	label: string,
-	path: string
+	label: string | FC
+	path: string;
+	whereIsVisible: string;
 }

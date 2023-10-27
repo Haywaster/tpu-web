@@ -58,9 +58,11 @@
 
   &:hover {
     transform: perspective(1000px) rotateY(5deg);
+
     .titleWrapper {
       opacity: 1;
     }
+
     .heart {
       opacity: 1;
     }
@@ -85,6 +87,9 @@
 .titleWrapper {
   width: 100%;
   display: flex;
+  align-items: center;
+  padding: 20px 0;
+  gap: 10px;
   flex-direction: column;
   position: absolute;
   bottom: 0;
@@ -119,6 +124,7 @@
   & > h3 {
     border-bottom: 2px solid #3481bd;
   }
+
   & > p {
     padding: 30px;
   }

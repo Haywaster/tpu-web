@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styles from '@pages/UserPage/UserPage.module.scss';
-import { filterItems } from '@assets/consts';
-import appStyles from '@/App.module.scss';
+import { useState } from 'react';
 import useUserFunctions from '@utils/hooks/useUserFunctions';
+import styles from '@pages/UserPage/UserPage.module.scss';
+import appStyles from '@/App.module.scss';
+import { filterItems } from '@assets/consts';
 
 const SearchWrapper = () => {
 	const { searchHandler, search } = useUserFunctions();
@@ -14,12 +14,14 @@ const SearchWrapper = () => {
 	return (
 		<div className={ styles.searchWrapper }>
 			<ul className={ styles.filterList }>
-				{ filterItems.map(item => (
+				{ filterItems.map(label =>
 					<li
-						className={ getActiveLink(item.label) }
-						onClick={ () => onActiveLinkClick(item.label) }
-						key={ item.label }>{ item.label }</li>
-				)) }
+						className={ getActiveLink(label) }
+						onClick={ () => onActiveLinkClick(label) }
+						key={ label }>
+						{ label }
+					</li>
+				) }
 			</ul>
 			<input className={ appStyles.input }
 				placeholder='Search...'

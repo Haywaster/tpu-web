@@ -1,7 +1,7 @@
 import Layout from '@components/Layout';
 import { aboutPageText } from '@assets/consts';
 import styles from './AboutPage.module.scss';
-import { AboutInfo } from '@/@types/enums';
+import { AboutInfo } from '@assets/enums';
 
 const AboutPage = () => {
 	return (

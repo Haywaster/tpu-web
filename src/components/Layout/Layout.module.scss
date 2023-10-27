@@ -1,15 +1,9 @@
-.layout {
-  min-height: 100vh;
-  background: linear-gradient(90deg, #adeaaf, #5e9666, #3481bd);
-}
-
 header {
   width: 100%;
 }
 
 .btn {
   composes: btn from '../../App.module.scss';
-
   &:hover {
     scale: none;
   }
@@ -35,16 +29,39 @@ header {
   background-color: #0000001c;
   display: flex;
   gap: 15px;
+  justify-content: end;
 
   a {
     color: #eeeaea8a;
+    max-width: fit-content;
+
     &:first-child {
-      flex-grow: 1;
+      margin-right: auto;
       font-weight: 800;
       color: #FFFF;
     }
     &.active {
       color: #FFFF
     }
+  }
+}
+
+.lending {
+  header {
+    position: absolute;
+    z-index: 1;
+  }
+}
+
+.mainLayout {
+  min-height: 100vh;
+  background: linear-gradient(90deg, #adeaaf, #5e9666, #3481bd);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
   }
 }

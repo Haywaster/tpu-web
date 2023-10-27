@@ -1,4 +1,4 @@
-import { ComponentType, ReactNode } from 'react';
+import { ComponentType, ReactNode, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addLog } from '@redux/slices/logSlice';
@@ -8,19 +8,28 @@ import useLogData from '@utils/hooks/useLogData';
 import { getLogData } from '@utils/libs/getLogData';
 
 import { linksConfig } from '@assets/consts';
-import { ILogData } from '@types';
+import { ILinkConfig, ILogData } from '@types';
 import styles from './Layout.module.scss';
-import useToken from '@utils/hooks/useToken';
-import { BsCart2 } from 'react-icons/bs';
 
-const Layout: ComponentType<{
-	children: ReactNode
-}> = ({ children }) => {
-	const { isUser, isContact, isAbout, isCart, pathname } = usePathname();
-	const { isToken } = useToken();
+interface IProps {
+	children: ReactNode;
+}
+
+const Layout: ComponentType<IProps> = ({ children}) => {
+	const { matchLinkStr, pathname } = usePathname();
+	const [filteredLinks, setFilteredLinks] = useState<ILinkConfig[]>([]);
 	const dispatch = useDispatch();
 	const { downloadLogs } = useLogData();
-	const projectStyles = isUser || isContact || isAbout ||isCart ? styles.columnWrapper : styles.rowWrapper;
+	
+	useEffect(() => {
+		const filteredLinks = linksConfig.filter(item => (
+			item.whereIsVisible === 'always' || item.whereIsVisible === matchLinkStr));
+		
+		setFilteredLinks(filteredLinks);
+	}, []);
+	
+	const projectStyles = matchLinkStr === 'lending' ? styles.lending : styles.mainLayout ;
+	
 	
 	const handleLinkClick = (path: string) => {
 		const action: string = `Clicked on link with URL: ${ path }`;
@@ -28,36 +37,26 @@ const Layout: ComponentType<{
 		dispatch(addLog(logData));
 	};
 	
+	const getLinkText = (el: ILinkConfig) => typeof el.label === 'string' ? el.label : <el.label/>;
 	const getActiveLink = (path: string): string => pathname === path ? styles.active : '';
 	
 	return (
-		<div className={ styles.layout }>
+		<div className={ projectStyles }>
 			<header>
 				<nav className={ styles.navPanel }>
-					{ isToken &&
-						<Link
-							className={ getActiveLink('/admin') }
-							key='admin'
-							to='/admin'
-							onClick={ () => handleLinkClick('/admin') }>Admin</Link> }
-					{ linksConfig.map(el => (
+					{ filteredLinks.map(el =>
 						<Link
 							className={ getActiveLink(el.path) }
 							key={ el.path }
 							to={ el.path }
-							onClick={ () => handleLinkClick(el.path) }>{ el.label }</Link>
-					)) }
+							onClick={ () => handleLinkClick(el.path) }>
+							{ getLinkText(el) }
+						</Link>
+					) }
 					<button className={ styles.btn } onClick={ downloadLogs }>Download Logs</button>
-					<Link
-						className={ getActiveLink('/cart') }
-						key={ 'cart' }
-						to={ '/cart' }
-						onClick={ () => handleLinkClick('/cart') }><BsCart2/></Link>
 				</nav>
 			</header>
-			<main className={ projectStyles }>
-				{ children }
-			</main>
+			<main>{ children }</main>
 		</div>
 	);
 };

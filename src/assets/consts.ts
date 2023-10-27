@@ -1,5 +1,6 @@
-import { ILinks } from '@types';
-import { AppRoutes } from '@/@types/enums';
+import { ILinkConfig, ILinks } from '@types';
+import { AppRoutes } from '@assets/enums';
+import { BsCart2 } from 'react-icons/bs';
 
 export const socialLinks: ILinks[] = [
 	{ name: 'VK', imageSrc: 'vk.png', href: 'https://vk.com/haywaster02' },
@@ -15,18 +16,15 @@ export const aboutPageText: string[] = [
 	'User-Friendly Experience: We\'ve designed our site with your comfort in mind. Navigation is intuitive, and you\'ll feel right at home.'
 ];
 
-export const linksConfig = [
-	{ label: 'ClockClick', path: AppRoutes.MAIN },
-	{ label: 'About', path: AppRoutes.ABOUT },
-	{ label: 'Contacts', path: AppRoutes.CONTACTS }
+export const linksConfig: ILinkConfig[] = [
+	{ label: 'ClockClick', path: AppRoutes.MAIN, whereIsVisible: 'always' },
+	{ label: 'Authorization', path: AppRoutes.AUTHORIZATION, whereIsVisible: 'lending' },
+	{ label: 'Registration', path: AppRoutes.REGISTRATION, whereIsVisible: 'lending' },
+	{ label: 'About', path: AppRoutes.ABOUT, whereIsVisible: 'mainContent' },
+	{ label: 'Contacts', path: AppRoutes.CONTACTS, whereIsVisible: 'mainContent' },
+	{ label: BsCart2, path: AppRoutes.CART, whereIsVisible: 'mainContent' }
 ];
 
-export const filterItems = [
-	{ label: 'All' },
-	{ label: 'Quartz' },
-	{ label: 'Wristwatch' },
-	{ label: 'Desk' },
-	{ label: 'Wall' },
-	{ label: 'Floor' },
-	{ label: 'Smartwatches' }
+export const filterItems: string[] = [
+	'All', 'Quartz', 'Wristwatch', 'Desk', 'Wall', 'Floor', 'Smartwatches'
 ];
