@@ -8,7 +8,7 @@ const useUserFunctions = () => {
 	const [debounceSearch, setDebounceSearch] = useState<string>('');
 	const queryClient = useQueryClient();
 	
-	const { isLoading, isError, data: messages, isSuccess } = useQuery(
+	const { isLoading, isError, data: cards, isSuccess } = useQuery(
 		['get all messages'],
 		() => PostService.getAll(),
 		{ select: ({ data }) => data, enabled: !debounceSearch }
@@ -43,7 +43,7 @@ const useUserFunctions = () => {
 		}
 	}, [debounceSearch, mutate]);
 	
-	return { search: visibleSearch, searchHandler, isLoading, isError, messages, isSuccess, debounceSearch };
+	return { search: visibleSearch, searchHandler, isLoading, isError, cards, isSuccess, debounceSearch };
 };
 
 export default useUserFunctions;

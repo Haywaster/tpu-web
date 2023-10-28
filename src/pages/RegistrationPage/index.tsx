@@ -12,7 +12,7 @@ const RegistrationPage = () => {
 				<input required placeholder='Login' className={ adminStyles.input } { ...register('login') } />
 				<input required placeholder='Password' className={ adminStyles.input } { ...register('password') } />
 				<input required placeholder='Repeat password' className={ adminStyles.input } { ...register('password') } />
-				<input className={ adminStyles.btn } type='submit' value='Login'/>
+				<input className={ adminStyles.btn } type='submit' value='Registration'/>
 			</form>
 		</Layout>
 	);

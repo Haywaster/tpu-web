@@ -9,19 +9,6 @@ header {
   }
 }
 
-.rowWrapper {
-  gap: 20px;
-  padding: 50px 100px;
-  width: -webkit-fill-available;
-  display: flex;
-  align-items: center;
-}
-
-.columnWrapper {
-  composes: rowWrapper;
-  flex-direction: column;
-}
-
 .navPanel {
   font-size: 18px;
   padding: 10px 50px;
@@ -40,6 +27,7 @@ header {
       font-weight: 800;
       color: #FFFF;
     }
+
     &.active {
       color: #FFFF
     }
@@ -47,21 +35,43 @@ header {
 }
 
 .lending {
+  height: 100vh;
+
   header {
     position: absolute;
-    z-index: 1;
+  }
+
+  main {
+    display: flex;
+    align-items: flex-end;
+    padding: 100px;
+    height: -webkit-fill-available;
+  }
+}
+
+.registration {
+  height: 100vh;
+  background: linear-gradient(90deg, #adeaaf, #5e9666, #3481bd);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  main {
+    flex-grow: 1;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
   }
 }
 
 .mainLayout {
+  composes: registration;
+  height: auto;
   min-height: 100vh;
-  background: linear-gradient(90deg, #adeaaf, #5e9666, #3481bd);
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+
   main {
-    display: flex;
     flex-direction: column;
-    gap: 30px;
   }
 }

@@ -13,7 +13,7 @@ import { ILogData } from '@types';
 import SearchWrapper from '@components/SearchWrapper';
 
 const UserPage = () => {
-	const { isSuccess, isError, isLoading, messages, debounceSearch } = useUserFunctions();
+	const { isSuccess, isError, isLoading, cards, debounceSearch } = useUserFunctions();
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
@@ -33,8 +33,8 @@ const UserPage = () => {
 				{ isError && <p>An error has occurred</p> }
 				{ isSuccess && (
 					<div className={ appStyles.cards }>
-						{ messages?.length === 0 && <p className={ appStyles.noCardsError }>There are no messages :(</p> }
-						{ messages?.map(message => (
+						{ cards?.length === 0 && <p className={ appStyles.noCardsError }>There are no messages :(</p> }
+						{ cards?.map(message => (
 							<CardItem key={ message.id } { ...message }/>
 						)) }
 					</div>

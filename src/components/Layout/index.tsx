@@ -15,8 +15,8 @@ interface IProps {
 	children: ReactNode;
 }
 
-const Layout: ComponentType<IProps> = ({ children}) => {
-	const { matchLinkStr, pathname } = usePathname();
+const Layout: ComponentType<IProps> = ({ children }) => {
+	const { matchLinkStr, pathname, isLending, isRegistration, isAuthorization } = usePathname();
 	const [filteredLinks, setFilteredLinks] = useState<ILinkConfig[]>([]);
 	const dispatch = useDispatch();
 	const { downloadLogs } = useLogData();
@@ -28,8 +28,10 @@ const Layout: ComponentType<IProps> = ({ children}) => {
 		setFilteredLinks(filteredLinks);
 	}, []);
 	
-	const projectStyles = matchLinkStr === 'lending' ? styles.lending : styles.mainLayout ;
-	
+	const projectStyles =
+		isLending ? styles.lending :
+			isRegistration || isAuthorization ? styles.registration :
+				styles.mainLayout;
 	
 	const handleLinkClick = (path: string) => {
 		const action: string = `Clicked on link with URL: ${ path }`;
@@ -42,20 +44,22 @@ const Layout: ComponentType<IProps> = ({ children}) => {
 	
 	return (
 		<div className={ projectStyles }>
-			<header>
-				<nav className={ styles.navPanel }>
-					{ filteredLinks.map(el =>
-						<Link
-							className={ getActiveLink(el.path) }
-							key={ el.path }
-							to={ el.path }
-							onClick={ () => handleLinkClick(el.path) }>
-							{ getLinkText(el) }
-						</Link>
-					) }
-					<button className={ styles.btn } onClick={ downloadLogs }>Download Logs</button>
-				</nav>
-			</header>
+			{ !isLending &&
+				<header>
+					<nav className={ styles.navPanel }>
+						{ filteredLinks.map(el =>
+							<Link
+								className={ getActiveLink(el.path) }
+								key={ el.path }
+								to={ el.path }
+								onClick={ () => handleLinkClick(el.path) }>
+								{ getLinkText(el) }
+							</Link>
+						) }
+						<button className={ styles.btn } onClick={ downloadLogs }>Download Logs</button>
+					</nav>
+				</header>
+			}
 			<main>{ children }</main>
 		</div>
 	);

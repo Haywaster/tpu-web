@@ -21,7 +21,7 @@ const usePathname = () => {
 	
 	const matchLinkStr: string = getVarMatchLinks()
 	
-	return { matchLinkStr, pathname };
+	return { matchLinkStr, pathname, isLending, isRegistration, isAuthorization };
 };
 
 export default usePathname;
