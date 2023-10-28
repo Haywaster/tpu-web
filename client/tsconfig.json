@@ -49,6 +49,6 @@
 	},
 	"include": [
 		"src",
-		"index.d.ts"
+		"global.d.ts"
 	]
 }

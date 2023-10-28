@@ -4,7 +4,7 @@ import useUserFunctions from '@utils/hooks/useUserFunctions';
 import useAdminFunctions from '@utils/hooks/useAdminFunctions';
 import useToken from '@utils/hooks/useToken';
 
-import CardItem from 'components/CardItem';
+import CardItem from '@components/CardItem';
 import Loader from '@components/Loader';
 import Layout from '@components/Layout';
 

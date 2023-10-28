@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { ICardData } from '@types';
+import { ICardData } from '@/@types';
 
 export interface CounterState {
 	items: ICardData[];

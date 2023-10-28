@@ -1,5 +1,5 @@
 import useUserFunctions from '@utils/hooks/useUserFunctions';
-import CardItem from 'components/CardItem';
+import CardItem from '@components/CardItem';
 import Layout from '@components/Layout';
 
 import appStyles from '@/App.module.scss';
@@ -9,7 +9,7 @@ import { getLogData } from '@utils/libs/getLogData';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addLog } from '@redux/slices/logSlice';
-import { ILogData } from '@types';
+import { ILogData } from '@/@types';
 import SearchWrapper from '@components/SearchWrapper';
 
 const UserPage = () => {

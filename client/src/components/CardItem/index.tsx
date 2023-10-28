@@ -1,5 +1,5 @@
 import { ComponentType, MouseEvent, useEffect, useState } from 'react';
-import { ICardData } from '@types';
+import { ICardData } from '@/@types';
 
 import appStyles from '@/App.module.scss';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';

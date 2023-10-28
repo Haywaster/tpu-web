@@ -22,7 +22,6 @@
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "react-uuid": "^2.0.0",
-    "sass": "^1.67.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -51,8 +50,12 @@
     ]
   },
   "devDependencies": {
+    "@types/css-modules": "^1.0.4",
     "@types/lodash.debounce": "^4.0.7",
+    "@types/node-sass": "^4.11.6",
     "lodash.debounce": "^4.0.8",
-    "react-app-rewired": "^2.2.1"
+    "node-sass": "^7.0.3",
+    "react-app-rewired": "^2.2.1",
+    "sass": "^1.69.5"
   }
 }

@@ -23,7 +23,7 @@
 }
 
 .btn {
-  composes: btn from '../../App.module.scss';
+  composes: btn from 'App.module.scss';
   margin-top: auto;
   align-self: end;
   padding: 5px 10px;
@@ -35,7 +35,7 @@
 }
 
 .input {
-  composes: input from '../../App.module.scss';
+  composes: input from 'App.module.scss';
   height: 20px;
   font-size: 12pt;
   width: -webkit-fill-available;
