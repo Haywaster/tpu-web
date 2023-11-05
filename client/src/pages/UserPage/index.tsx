@@ -9,11 +9,11 @@ import { getLogData } from '@utils/libs/getLogData';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addLog } from '@redux/slices/logSlice';
-import { ILogData } from '@/@types';
+import { ILogData } from '@types';
 import SearchWrapper from '@components/SearchWrapper';
 
 const UserPage = () => {
-	const { isSuccess, isError, isLoading, cards, debounceSearch } = useUserFunctions();
+	const { isError, isLoading, cards, debounceSearch } = useUserFunctions();
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
@@ -31,12 +31,10 @@ const UserPage = () => {
 				<SearchWrapper/>
 				{ isLoading && <div className={ styles.loaderWrapper }><Loader/></div> }
 				{ isError && <p>An error has occurred</p> }
-				{ isSuccess && (
+				{ cards && (
 					<div className={ appStyles.cards }>
-						{ cards?.length === 0 && <p className={ appStyles.noCardsError }>There are no messages :(</p> }
-						{ cards?.map(message => (
-							<CardItem key={ message.id } { ...message }/>
-						)) }
+						{ cards.length === 0 && <p className={ appStyles.noCardsError }>There are no messages :(</p> }
+						{ cards.map(message => <CardItem key={ message._id } { ...message }/>) }
 					</div>
 				) }
 			</section>

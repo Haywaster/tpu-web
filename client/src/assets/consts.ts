@@ -1,4 +1,4 @@
-import { ILinkConfig, ILinks } from '@/@types';
+import { ILinkConfig, ILinks } from '@types';
 import { AppRoutes } from '@assets/enums';
 import { BsCart2 } from 'react-icons/bs';
 

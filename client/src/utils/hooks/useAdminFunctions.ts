@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { IAdminFormData, ILogData, IMessagePost, IMessageSend } from '@/@types';
+import { IAdminFormData, ILogData, IMessagePost, IMessageSend } from '@types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { PostService } from '@service/PostService';
 import { useNavigate } from 'react-router-dom';

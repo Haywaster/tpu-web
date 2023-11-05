@@ -1,19 +1,14 @@
 import axios from 'axios';
-import { ICardData, IMessagePost } from '@/@types';
+import { ICardData, IMessagePost } from '@types';
 
-axios.defaults.baseURL = 'https://run.mocky.io/v3/';
+export const url = 'http://localhost:3001/';
+axios.defaults.baseURL = url;
 
 export const PostService = {
-	async getAll() {
-		const { data } = await axios<ICardData[]>('a4051620-f04a-4301-bad8-c7ad33b0dc5d');
+	async getAll(queryString?: string) {
+		const url = `api/posts${ queryString ? `?${ queryString }` : '' }`;
+		const { data } = await axios.get<ICardData[]>(url);
 		return { data };
-	},
-	
-	async search(inputValue: string) {
-		if (inputValue) {
-			const { data } = await axios.get<ICardData[]>(`/messages?search=${ inputValue }`);
-			return { data };
-		}
 	},
 	
 	async post(body: IMessagePost) {

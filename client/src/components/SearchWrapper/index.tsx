@@ -1,23 +1,24 @@
-import { useState } from 'react';
 import useUserFunctions from '@utils/hooks/useUserFunctions';
 import styles from '@pages/UserPage/UserPage.module.scss';
 import appStyles from '@/App.module.scss';
 import { filterItems } from '@assets/consts';
 
 const SearchWrapper = () => {
-	const { searchHandler, search } = useUserFunctions();
-	const [activeLink, setActiveLink] = useState('All');
+	const { searchHandler, search, mutate, activeCategory, setActiveCategory } = useUserFunctions();
 	
-	const onActiveLinkClick = (activeName: string): void => setActiveLink(activeName);
-	const getActiveLink = (activeName: string): string => activeLink === activeName ? styles.active : '';
+	const activeCategoryStyles = (activeName: string): string => activeCategory === activeName ? styles.active : '';
+	const chooseActiveCategory = (activeName: string) => {
+		setActiveCategory(activeName);
+		mutate({ filterData: activeName, key:'category' })
+	};
 	
 	return (
 		<div className={ styles.searchWrapper }>
 			<ul className={ styles.filterList }>
 				{ filterItems.map(label =>
 					<li
-						className={ getActiveLink(label) }
-						onClick={ () => onActiveLinkClick(label) }
+						className={ activeCategoryStyles(label) }
+						onClick={ () => chooseActiveCategory(label) }
 						key={ label }>
 						{ label }
 					</li>

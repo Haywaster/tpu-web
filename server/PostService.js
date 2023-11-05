@@ -7,8 +7,18 @@ class PostService {
 		return Post.create({ ...post, image: fileName });
 	}
 
-	getAll() {
-		return Post.find();
+	getAll(category, search) {
+		if (category || search) {
+			const query = {};
+			if (category) {
+				query.category = category;
+			}
+			if (search) {
+				query.name = { $regex: search, $options: 'i' };
+			}
+			return Post.find(query);
+		}
+		else return Post.find();
 	}
 
 	getOne(postId) {

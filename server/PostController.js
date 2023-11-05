@@ -12,7 +12,8 @@ class PostController {
 
 	async getAll(req, res) {
 		try {
-			const posts = await PostService.getAll();
+			const { category, search } = req.query;
+			const posts = await PostService.getAll(category, search);
 			return res.json(posts);
 		} catch (error) {
 			res.status(500).json(error.message);

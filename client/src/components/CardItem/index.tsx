@@ -1,12 +1,13 @@
 import { ComponentType, MouseEvent, useEffect, useState } from 'react';
-import { ICardData } from '@/@types';
+import { ICardData } from '@types';
 
 import appStyles from '@/App.module.scss';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { addItem, removeItem } from '@redux/slices/cartSlice';
+import { url } from '@service/PostService';
 
-const CardItem: ComponentType<ICardData> = ({ image, name, description, price, category, id }) => {
+const CardItem: ComponentType<ICardData> = ({ image, name, description, price, category, _id }) => {
 	const [isBackSide, setIsBackSide] = useState(false);
 	const [isItemInCart, setIsItemInCart] = useState(false);
 	const dispatch = useDispatch();
@@ -20,9 +21,9 @@ const CardItem: ComponentType<ICardData> = ({ image, name, description, price, c
 	
 	useEffect(() => {
 		if (isItemInCart) {
-			dispatch(addItem({ image, name, description, price, category, id }));
+			dispatch(addItem({ image, name, description, price, category, _id }));
 		} else {
-			dispatch(removeItem(id));
+			dispatch(removeItem(_id));
 		}
 	}, [isItemInCart]);
 	
@@ -37,7 +38,7 @@ const CardItem: ComponentType<ICardData> = ({ image, name, description, price, c
 					<AiOutlineHeart onClick={ isItemInCartHandler } className={ appStyles.heart }/> :
 					<AiFillHeart onClick={ isItemInCartHandler } className={ appStyles.heart }/> }
 				<img className={ appStyles.image }
-					src='https://watch-planet.ru/upload/iblock/588/x2ja7jcw2h7u21yz2b965806exjt2bhs/SEM_2597.jpg'
+					src={ url + image }
 					alt={ name }/>
 				<div className={ appStyles.titleWrapper }>
 					<h2>{ name }</h2>

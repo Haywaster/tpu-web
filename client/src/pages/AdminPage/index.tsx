@@ -12,7 +12,7 @@ import appStyles from '@/App.module.scss';
 import styles from './AdminPage.module.scss';
 
 const AdminPage: FC = () => {
-	const { isSuccess, isError, isLoading, cards } = useUserFunctions();
+	const { isError, isLoading, cards } = useUserFunctions();
 	const { register, handleSubmit, onSubmit } = useAdminFunctions();
 	const { isToken } = useToken();
 	const navigate = useNavigate();
@@ -26,11 +26,11 @@ const AdminPage: FC = () => {
 			<section className={ styles.adminWrapper }>
 				{ isLoading && <div className={ styles.loaderWrapper }><Loader/></div> }
 				{ isError && <p>An error has occurred</p> }
-				{ isSuccess && (
+				{ cards && (
 					<div className={ appStyles.cards }>
-						{ cards?.length === 0 && <p className={ appStyles.noCardsError }>There are no messages :(</p> }
-						{ cards?.map(message => (
-							<CardItem key={ message.id } { ...message }/>
+						{ cards.length === 0 && <p className={ appStyles.noCardsError }>There are no messages :(</p> }
+						{ cards.map(message => (
+							<CardItem key={ message._id } { ...message }/>
 						)) }
 					</div>
 				) }

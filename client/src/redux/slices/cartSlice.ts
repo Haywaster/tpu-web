@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { ICardData } from '@/@types';
+import { ICardData } from '@types';
 
 export interface CounterState {
 	items: ICardData[];
@@ -18,7 +18,7 @@ export const cartSlice = createSlice({
 			state.items.push(action.payload);
 		},
 		removeItem: (state, action: PayloadAction<string>) => {
-			state.items = state.items.filter(item => item.id !== action.payload);
+			state.items = state.items.filter(item => item._id !== action.payload);
 		}
 	}
 });

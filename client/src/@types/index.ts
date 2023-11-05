@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 export interface ICardData {
-	id: string,
+	_id: string,
 	image: string,
 	name: string,
 	description: string
@@ -36,4 +36,15 @@ export interface ILinkConfig {
 	label: string | FC
 	path: string;
 	whereIsVisible: string;
+}
+
+export interface IFilterData {
+	filterData: string;
+	key: string;
+}
+
+export interface IQueryParams {
+	category: string;
+	search: string;
+	[key: string]: string | undefined;
 }

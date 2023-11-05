@@ -8,7 +8,7 @@ import useLogData from '@utils/hooks/useLogData';
 import { getLogData } from '@utils/libs/getLogData';
 
 import { linksConfig } from '@assets/consts';
-import { ILinkConfig, ILogData } from '@/@types';
+import { ILinkConfig, ILogData } from '@types';
 import styles from './Layout.module.scss';
 
 interface IProps {

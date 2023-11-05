@@ -2,7 +2,7 @@ import Layout from '@components/Layout';
 import { socialLinks } from '@assets/consts';
 
 import styles from './ContactPage.module.scss';
-import { ILogData } from '@/@types';
+import { ILogData } from '@types';
 import { getLogData } from '@utils/libs/getLogData';
 import { addLog } from '@redux/slices/logSlice';
 import { useDispatch } from 'react-redux';

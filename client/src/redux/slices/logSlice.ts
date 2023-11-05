@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { ILogData } from '@/@types';
+import { ILogData } from '@types';
 
 export interface CounterState {
 	actions: ILogData[];

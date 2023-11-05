@@ -1,4 +1,4 @@
-import { ILogData } from '@/@types';
+import { ILogData } from '@types';
 
 export const getLogData = (action: string): ILogData => {
 	const now = new Date();
