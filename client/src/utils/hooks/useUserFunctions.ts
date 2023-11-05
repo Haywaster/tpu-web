@@ -12,11 +12,11 @@ const useUserFunctions = () => {
 	const [debounceSearch, setDebounceSearch] = useState<string>('');
 	const queryClient = useQueryClient();
 	
-	const { isLoading, isError, data: cards, isSuccess } = useQuery(
+	const { isLoading, isError, data: cards } = useQuery(
 		['getAllPosts'],
 		() => {
-			const queryString = buildQueryString(queryParams.current)
-			return PostService.getAll(queryString)
+			const queryString = buildQueryString(queryParams.current);
+			return PostService.getAll(queryString);
 		},
 		{ select: ({ data }) => data }
 	);
@@ -35,7 +35,7 @@ const useUserFunctions = () => {
 				queryParams.current = { ...queryParams.current, search: filterData };
 			}
 			
-			const queryString = buildQueryString(queryParams.current)
+			const queryString = buildQueryString(queryParams.current);
 			return PostService.getAll(queryString);
 		},
 		{

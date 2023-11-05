@@ -7,7 +7,7 @@ axios.defaults.baseURL = url;
 export const PostService = {
 	async getAll(queryString?: string) {
 		const url = `api/posts${ queryString ? `?${ queryString }` : '' }`;
-		const { data } = await axios.get<ICardData[]>(url);
+		const { data } = await axios<ICardData[]>(url);
 		return { data };
 	},
 	

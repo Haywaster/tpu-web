@@ -3,29 +3,29 @@ import { ICardData } from '@types';
 
 import appStyles from '@/App.module.scss';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
-import { addItem, removeItem } from '@redux/slices/cartSlice';
 import { url } from '@service/PostService';
+import useCartData from '@utils/hooks/useCartData';
 
 const CardItem: ComponentType<ICardData> = ({ image, name, description, price, category, _id }) => {
+	const { cart, addItem, deleteItem } = useCartData();
 	const [isBackSide, setIsBackSide] = useState(false);
 	const [isItemInCart, setIsItemInCart] = useState(false);
-	const dispatch = useDispatch();
 	
 	const onChangeCardSide = () => setIsBackSide(prev => !prev);
 	
 	const isItemInCartHandler = (e: MouseEvent) => {
-		e.stopPropagation(); // Предотвращаем распространение события вверх по DOM иерархии
-		setIsItemInCart(prev => !prev);
+		e.stopPropagation();
+		setIsItemInCart(prev => {
+			!prev ? addItem(_id) : deleteItem(_id);
+			return !prev;
+		});
 	};
 	
 	useEffect(() => {
-		if (isItemInCart) {
-			dispatch(addItem({ image, name, description, price, category, _id }));
-		} else {
-			dispatch(removeItem(_id));
+		if (cart?.find(item => item.name === name)) {
+			setIsItemInCart(true);
 		}
-	}, [isItemInCart]);
+	}, [cart]);
 	
 	return (
 		<div

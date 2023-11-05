@@ -1,5 +1,5 @@
-import Post from './Post.js';
-import FileService from './FileService.js';
+import Post from '../models/Post.js';
+import FileService from '../services/FileService.js';
 
 class PostService {
 	create(post, image) {

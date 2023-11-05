@@ -1,4 +1,4 @@
-import { IQueryParams } from '@/@types';
+import { IQueryParams } from '@types';
 
 export const buildQueryString = (params: IQueryParams): string => {
 	return Object.keys(params)
