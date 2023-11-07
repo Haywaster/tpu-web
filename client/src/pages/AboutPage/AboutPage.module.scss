@@ -1,10 +1,12 @@
 .aboutWrapper {
+  flex-grow: 1;
   background-color: rgba(0, 0, 0, 0.16);
   padding: 15px;
   border-radius: 20px;
 
   p {
-    margin: 0 0 15px;
+    font-size: 22pt;
+    margin-top: 20px;
 
     &:first-of-type,
     &:last-child {
@@ -15,7 +17,13 @@
   }
 
   h2 {
+    font-size: 30pt;
     text-align: center;
+  }
+
+  li {
+    font-size: 13pt;
+    margin-top: 15px;
   }
 }
 

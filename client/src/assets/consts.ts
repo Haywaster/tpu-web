@@ -1,6 +1,5 @@
 import { ILinkConfig, ILinks } from '@types';
-import { AppRoutes } from '@assets/enums';
-import { BsCart2 } from 'react-icons/bs';
+import { AppRouteNames, AppRoutes, CART_ICON as Cart } from '@assets/enums';
 
 export const socialLinks: ILinks[] = [
 	{ name: 'VK', imageSrc: 'vk.png', href: 'https://vk.com/haywaster02' },
@@ -17,12 +16,13 @@ export const aboutPageText: string[] = [
 ];
 
 export const linksConfig: ILinkConfig[] = [
-	{ label: 'ClockClick', path: AppRoutes.MAIN, whereIsVisible: 'always' },
-	{ label: 'Authorization', path: AppRoutes.AUTHORIZATION, whereIsVisible: 'lending' },
-	{ label: 'Registration', path: AppRoutes.REGISTRATION, whereIsVisible: 'lending' },
-	{ label: 'About', path: AppRoutes.ABOUT, whereIsVisible: 'mainContent' },
-	{ label: 'Contacts', path: AppRoutes.CONTACTS, whereIsVisible: 'mainContent' },
-	{ label: BsCart2, path: AppRoutes.CART, whereIsVisible: 'mainContent' }
+	{ label: AppRouteNames.MAIN, path: AppRoutes.MAIN },
+	{ label: AppRouteNames.AUTHORIZATION, path: AppRoutes.AUTHORIZATION },
+	{ label: AppRouteNames.REGISTRATION, path: AppRoutes.REGISTRATION },
+	{ label: AppRouteNames.ABOUT, path: AppRoutes.ABOUT },
+	{ label: AppRouteNames.CONTACTS, path: AppRoutes.CONTACTS },
+	{ label: AppRouteNames.ADMIN, path: AppRoutes.ADMIN },
+	{ label: Cart, path: AppRoutes.CART },
 ];
 
 export const filterItems: string[] = [

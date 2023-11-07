@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { addLog } from '@redux/slices/logSlice';
 import { ILogData } from '@types';
 import SearchWrapper from '@components/SearchWrapper';
+import { AppNotification } from '@assets/enums';
 
 const UserPage = () => {
 	const { isError, isLoading, cards, debounceSearch } = useUserFunctions();
@@ -30,13 +31,14 @@ const UserPage = () => {
 			<section className={ styles.userMessageWrapper }>
 				<SearchWrapper/>
 				{ isLoading && <div className={ styles.loaderWrapper }><Loader/></div> }
-				{ isError && <p>An error has occurred</p> }
+				{ isError && <p>{AppNotification.ERROR_MESSAGE}</p> }
 				{ cards && (
+					cards.length === 0 && <p className={ appStyles.noCardsError }>{ AppNotification.NO_MESSAGE }</p> ||
 					<div className={ appStyles.cards }>
-						{ cards.length === 0 && <p className={ appStyles.noCardsError }>There are no messages :(</p> }
 						{ cards.map(message => <CardItem key={ message._id } { ...message }/>) }
 					</div>
 				) }
+			
 			</section>
 		</Layout>
 	);

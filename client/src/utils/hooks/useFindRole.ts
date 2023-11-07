@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useToken = () => {
+const useFindRole = () => {
 	const [token, setToken] = useState<string>('');
 	
 	useEffect(() => {
@@ -11,7 +11,7 @@ const useToken = () => {
 		}
 	}, []);
 	
-	return { isToken: !!token };
+	return { role: 'admin' };
 };
 
-export default useToken;
+export default useFindRole

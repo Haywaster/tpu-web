@@ -35,7 +35,6 @@ export interface ILogData {
 export interface ILinkConfig {
 	label: string | FC
 	path: string;
-	whereIsVisible: string;
 }
 
 export interface IFilterData {

@@ -16,16 +16,13 @@ interface IProps {
 }
 
 const Layout: ComponentType<IProps> = ({ children }) => {
-	const { matchLinkStr, pathname, isLending, isRegistration, isAuthorization } = usePathname();
+	const { currentLinks, pathname, isLending, isRegistration, isAuthorization } = usePathname();
 	const [filteredLinks, setFilteredLinks] = useState<ILinkConfig[]>([]);
 	const dispatch = useDispatch();
 	const { downloadLogs } = useLogData();
 	
 	useEffect(() => {
-		const filteredLinks = linksConfig.filter(item => (
-			item.whereIsVisible === 'always' || item.whereIsVisible === matchLinkStr));
-		
-		setFilteredLinks(filteredLinks);
+		setFilteredLinks(currentLinks);
 	}, []);
 	
 	const projectStyles =

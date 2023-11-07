@@ -1,7 +1,12 @@
 import { useLocation } from 'react-router-dom';
+import useFindRole from '@utils/hooks/useFindRole';
+import { linksConfig } from '@assets/consts';
+import { AppRouteNames, CART_ICON as Cart } from '@assets/enums';
+import { ILinkConfig } from '@/@types';
 
 const usePathname = () => {
 	const { pathname } = useLocation();
+	const { role } = useFindRole();
 	
 	const isMain: boolean = pathname === '/';
 	const isLending: boolean = pathname === '/lending';
@@ -12,16 +17,27 @@ const usePathname = () => {
 	const isAuthorization: boolean = pathname === '/authorization';
 	// const isAdmin: boolean = pathname === '/admin';
 	
-	const getVarMatchLinks = (): string => {
-		if (isLending || isRegistration || isAuthorization) return 'lending';
-		else if (isMain || isContact || isAbout || isCart) return 'mainContent';
-		else return ''
-		// else if (isAdmin) return 'admin'
+	const getVarMatchLinks = (): ILinkConfig[] => {
+		if (role === '') return [];
+		else if (role == 'user') {
+			return linksConfig.filter(item =>
+				item.label === AppRouteNames.MAIN ||
+				item.label === AppRouteNames.CONTACTS ||
+				item.label === AppRouteNames.ABOUT ||
+				item.label === Cart)
+		}
+		else if (role === 'admin') {
+			return linksConfig.filter(item =>
+				item.label === AppRouteNames.MAIN ||
+				item.label === AppRouteNames.ADMIN ||
+				item.label === Cart)
+		}
+		return linksConfig
 	};
 	
-	const matchLinkStr: string = getVarMatchLinks()
+	const currentLinks: ILinkConfig[] = getVarMatchLinks();
 	
-	return { matchLinkStr, pathname, isLending, isRegistration, isAuthorization };
+	return { currentLinks, pathname, isLending, isRegistration, isAuthorization };
 };
 
 export default usePathname;

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUserFunctions from '@utils/hooks/useUserFunctions';
 import useAdminFunctions from '@utils/hooks/useAdminFunctions';
-import useToken from '@utils/hooks/useToken';
+import useFindRole from '@utils/hooks/useFindRole';
 
 import CardItem from '@components/CardItem';
 import Loader from '@components/Loader';
@@ -10,35 +10,34 @@ import Layout from '@components/Layout';
 
 import appStyles from '@/App.module.scss';
 import styles from './AdminPage.module.scss';
+import { AppNotification } from '@assets/enums';
 
 const AdminPage: FC = () => {
 	const { isError, isLoading, cards } = useUserFunctions();
 	const { register, handleSubmit, onSubmit } = useAdminFunctions();
-	const { isToken } = useToken();
+	// const { isToken } = useFindRole();
 	const navigate = useNavigate();
 	
-	if (!isToken) {
-		navigate('/authorization');
-	}
+	// if (!isToken) {
+	// 	navigate('/authorization');
+	// }
 	
 	return (
 		<Layout>
 			<section className={ styles.adminWrapper }>
 				{ isLoading && <div className={ styles.loaderWrapper }><Loader/></div> }
-				{ isError && <p>An error has occurred</p> }
-				{ cards && (
-					<div className={ appStyles.cards }>
-						{ cards.length === 0 && <p className={ appStyles.noCardsError }>There are no messages :(</p> }
-						{ cards.map(message => (
-							<CardItem key={ message._id } { ...message }/>
-						)) }
-					</div>
-				) }
+				{ isError && <p>{AppNotification.ERROR_MESSAGE}</p> }
+				<div className={ appStyles.cards }>
+					{ cards?.map(message => (
+						<CardItem key={ message._id } { ...message }/>
+					)) }
+				</div>
+				{ cards?.length === 0 && <p className={ styles.emptyCart }>{ AppNotification.NO_MESSAGE }</p> }
 				<form className={ styles.form } onSubmit={ handleSubmit(onSubmit) }>
 					<h3>Create post</h3>
-					{/*<input required placeholder='Title' className={ styles.input } { ...register('title') } />*/}
-					{/*<input required placeholder='Description' className={ styles.input } { ...register('desc') } />*/}
-					{/*<input required placeholder='Keywords' className={ styles.input } { ...register('keywords') } />*/}
+					{/*<input required placeholder='Title' className={ styles.input } { ...register('title') } />*/ }
+					{/*<input required placeholder='Description' className={ styles.input } { ...register('desc') } />*/ }
+					{/*<input required placeholder='Keywords' className={ styles.input } { ...register('keywords') } />*/ }
 					<input className={ styles.btn } type='submit'/>
 				</form>
 			</section>
