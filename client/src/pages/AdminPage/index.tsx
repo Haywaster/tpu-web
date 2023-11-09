@@ -13,7 +13,7 @@ import styles from './AdminPage.module.scss';
 import { AppNotification } from '@assets/enums';
 
 const AdminPage: FC = () => {
-	const { isError, isLoading, cards } = useUserFunctions();
+	const { isError, cards } = useUserFunctions();
 	const { register, handleSubmit, onSubmit } = useAdminFunctions();
 	// const { isToken } = useFindRole();
 	const navigate = useNavigate();
@@ -25,7 +25,7 @@ const AdminPage: FC = () => {
 	return (
 		<Layout>
 			<section className={ styles.adminWrapper }>
-				{ isLoading && <div className={ styles.loaderWrapper }><Loader/></div> }
+				{/*{ isLoading && <div className={ styles.loaderWrapper }><Loader/></div> }*/}
 				{ isError && <p>{AppNotification.ERROR_MESSAGE}</p> }
 				<div className={ appStyles.cards }>
 					{ cards?.map(message => (

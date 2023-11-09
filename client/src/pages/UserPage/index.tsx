@@ -14,7 +14,7 @@ import SearchWrapper from '@components/SearchWrapper';
 import { AppNotification } from '@assets/enums';
 
 const UserPage = () => {
-	const { isError, isLoading, cards, debounceSearch } = useUserFunctions();
+	const { isError,isFetching, cards, debounceSearch } = useUserFunctions();
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
@@ -30,15 +30,13 @@ const UserPage = () => {
 			<h1>Welcome to <span style={ { color: 'yellow' } }>ClockClick</span>!</h1>
 			<section className={ styles.userMessageWrapper }>
 				<SearchWrapper/>
-				{ isLoading && <div className={ styles.loaderWrapper }><Loader/></div> }
-				{ isError && <p>{AppNotification.ERROR_MESSAGE}</p> }
-				{ cards && (
-					cards.length === 0 && <p className={ appStyles.noCardsError }>{ AppNotification.NO_MESSAGE }</p> ||
+				{ isError && <p>{ AppNotification.ERROR_MESSAGE }</p> }
+				{ isFetching ? <div className={ styles.loaderWrapper }><Loader/></div> : (
+					cards?.length === 0 && <p className={ appStyles.noCardsError }>{ AppNotification.NO_MESSAGE }</p> ||
 					<div className={ appStyles.cards }>
-						{ cards.map(message => <CardItem key={ message._id } { ...message }/>) }
+						{ cards?.map(message => <CardItem key={ message._id } { ...message }/>) }
 					</div>
 				) }
-			
 			</section>
 		</Layout>
 	);

@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useRef, useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { PostService } from '@service/PostService';
 import debounce from 'lodash.debounce';
 import { IFilterData, IQueryParams } from '@types';
@@ -10,9 +10,8 @@ const useUserFunctions = () => {
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [visibleSearch, setVisibleSearch] = useState<string>('');
 	const [debounceSearch, setDebounceSearch] = useState<string>('');
-	const queryClient = useQueryClient();
 	
-	const { isLoading, isError, data: cards } = useQuery(
+	const { isFetching, isError, data: cards, refetch } = useQuery(
 		['getAllPosts'],
 		() => {
 			const queryString = buildQueryString(queryParams.current);
@@ -40,7 +39,7 @@ const useUserFunctions = () => {
 		},
 		{
 			onSuccess(newData) {
-				queryClient.setQueryData(['getAllPosts'], newData);
+				refetch()
 			}
 		}
 	);
@@ -62,7 +61,7 @@ const useUserFunctions = () => {
 	return {
 		search: visibleSearch,
 		searchHandler,
-		isLoading,
+		isFetching,
 		isError,
 		cards,
 		debounceSearch,
