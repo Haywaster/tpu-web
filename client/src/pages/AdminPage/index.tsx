@@ -2,10 +2,8 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUserFunctions from '@utils/hooks/useUserFunctions';
 import useAdminFunctions from '@utils/hooks/useAdminFunctions';
-import useFindRole from '@utils/hooks/useFindRole';
 
 import CardItem from '@components/CardItem';
-import Loader from '@components/Loader';
 import Layout from '@components/Layout';
 
 import appStyles from '@/App.module.scss';
@@ -25,8 +23,8 @@ const AdminPage: FC = () => {
 	return (
 		<Layout>
 			<section className={ styles.adminWrapper }>
-				{/*{ isLoading && <div className={ styles.loaderWrapper }><Loader/></div> }*/}
-				{ isError && <p>{AppNotification.ERROR_MESSAGE}</p> }
+				{/*{ isLoading && <div className={ styles.loaderWrapper }><Loader/></div> }*/ }
+				{ isError && <p>{ AppNotification.ERROR_MESSAGE }</p> }
 				<div className={ appStyles.cards }>
 					{ cards?.map(message => (
 						<CardItem key={ message._id } { ...message }/>

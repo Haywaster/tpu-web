@@ -1,5 +1,5 @@
 .adminWrapper {
-  composes: userMessageWrapper from '../UserPage/UserPage.module.scss';
+  composes: userMessageWrapper from '../MainPage/UserPage.module.scss';
   justify-content: space-between;
   height: 250px;
   flex-direction: row;

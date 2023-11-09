@@ -2,11 +2,11 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { ICardData } from '@types';
 
-export interface CounterState {
+export interface ICartState {
 	items: ICardData[];
 }
 
-const initialState: CounterState = {
+const initialState: ICartState = {
 	items: []
 };
 
@@ -23,7 +23,7 @@ export const cartSlice = createSlice({
 	}
 });
 
-export const { addItem, removeItem } = cartSlice.actions;
+export const cartActions = cartSlice.actions;
 
 export default cartSlice.reducer;
 

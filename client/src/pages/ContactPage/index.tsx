@@ -4,16 +4,15 @@ import { socialLinks } from '@assets/consts';
 import styles from './ContactPage.module.scss';
 import { ILogData } from '@types';
 import { getLogData } from '@utils/libs/getLogData';
-import { addLog } from '@redux/slices/logSlice';
-import { useDispatch } from 'react-redux';
+import useActions from '@utils/hooks/useActions';
 
 const ContactsPage = () => {
-	const dispatch = useDispatch();
+	const { addLog } = useActions();
 	
 	const downloadHandler = (name: string) => {
 		const action: string = `Clicked on "${ name }" contact link"`;
 		const logData: ILogData = getLogData(action);
-		dispatch(addLog(logData));
+		addLog(logData);
 	};
 	
 	return (

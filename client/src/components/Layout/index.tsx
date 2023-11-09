@@ -1,15 +1,13 @@
 import { ComponentType, ReactNode, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addLog } from '@redux/slices/logSlice';
 
 import usePathname from '@utils/hooks/usePathname';
 import useLogData from '@utils/hooks/useLogData';
 import { getLogData } from '@utils/libs/getLogData';
 
-import { linksConfig } from '@assets/consts';
 import { ILinkConfig, ILogData } from '@types';
 import styles from './Layout.module.scss';
+import useActions from '@utils/hooks/useActions';
 
 interface IProps {
 	children: ReactNode;
@@ -18,8 +16,8 @@ interface IProps {
 const Layout: ComponentType<IProps> = ({ children }) => {
 	const { currentLinks, pathname, isLending, isRegistration, isAuthorization } = usePathname();
 	const [filteredLinks, setFilteredLinks] = useState<ILinkConfig[]>([]);
-	const dispatch = useDispatch();
 	const { downloadLogs } = useLogData();
+	const { addLog } = useActions();
 	
 	useEffect(() => {
 		setFilteredLinks(currentLinks);
@@ -33,7 +31,7 @@ const Layout: ComponentType<IProps> = ({ children }) => {
 	const handleLinkClick = (path: string) => {
 		const action: string = `Clicked on link with URL: ${ path }`;
 		const logData: ILogData = getLogData(action);
-		dispatch(addLog(logData));
+		addLog(logData);
 	};
 	
 	const getLinkText = (el: ILinkConfig) => typeof el.label === 'string' ? el.label : <el.label/>;

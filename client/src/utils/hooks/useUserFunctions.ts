@@ -1,21 +1,22 @@
 import { ChangeEvent, useCallback, useRef, useState } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { PostService } from '@service/PostService';
 import debounce from 'lodash.debounce';
 import { IFilterData, IQueryParams } from '@types';
 import { buildQueryString } from '@utils/libs/buildQuetyString';
 
 const useUserFunctions = () => {
+	const queryClient = useQueryClient();
 	const queryParams = useRef<IQueryParams>({} as IQueryParams);
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [visibleSearch, setVisibleSearch] = useState<string>('');
 	const [debounceSearch, setDebounceSearch] = useState<string>('');
 	
-	const { isFetching, isError, data: cards, refetch } = useQuery(
+	const { isFetching, isError, data: cards } = useQuery(
 		['getAllPosts'],
 		() => {
-			const queryString = buildQueryString(queryParams.current);
-			return PostService.getAll(queryString);
+			// const queryString = buildQueryString(queryParams.current);
+			return PostService.getAll();
 		},
 		{ select: ({ data }) => data }
 	);
@@ -34,12 +35,12 @@ const useUserFunctions = () => {
 				queryParams.current = { ...queryParams.current, search: filterData };
 			}
 			
-			const queryString = buildQueryString(queryParams.current);
-			return PostService.getAll(queryString);
+			// const queryString = buildQueryString(queryParams.current);
+			return PostService.getAll();
 		},
 		{
 			onSuccess(newData) {
-				refetch()
+				queryClient.invalidateQueries({ queryKey: ['getAllPosts'] });
 			}
 		}
 	);

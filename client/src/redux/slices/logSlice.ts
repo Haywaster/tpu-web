@@ -2,11 +2,11 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { ILogData } from '@types';
 
-export interface CounterState {
+export interface ILogState {
 	actions: ILogData[];
 }
 
-const initialState: CounterState = {
+const initialState: ILogState = {
 	actions: []
 };
 
@@ -20,7 +20,7 @@ export const logSlice = createSlice({
 	}
 });
 
-export const { addLog } = logSlice.actions;
+export const logActions = logSlice.actions;
 
 export default logSlice.reducer;
 

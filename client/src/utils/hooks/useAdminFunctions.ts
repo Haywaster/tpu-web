@@ -3,22 +3,21 @@ import { IAdminFormData, ILogData, IMessagePost, IMessageSend } from '@types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { PostService } from '@service/PostService';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { getLogData } from '@utils/libs/getLogData';
-import { addLog } from '@redux/slices/logSlice';
+import useActions from '@utils/hooks/useActions';
 
 const useAdminFunctions = () => {
 	const { register, handleSubmit, reset } = useForm<IMessageSend | IAdminFormData>();
 	const queryClient = useQueryClient();
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const { addLog } = useActions();
 	
 	const { mutate } = useMutation(['create message'], (body: IMessagePost) => PostService.post(body), {
 		onSuccess() {
 			queryClient.invalidateQueries(['get all messages']);
 			const action: string = `The message wes created"`;
 			const logData: ILogData = getLogData(action);
-			dispatch(addLog(logData));
+			addLog(logData);
 		}
 	});
 	
@@ -29,7 +28,7 @@ const useAdminFunctions = () => {
 			
 			const action: string = `The user logged in as administrator and was redirected to "/admin"`;
 			const logData: ILogData = getLogData(action);
-			dispatch(addLog(logData));
+			addLog(logData);
 			
 			navigate('/admin');
 		} else {
@@ -45,7 +44,7 @@ const useAdminFunctions = () => {
 			queryClient.invalidateQueries(['get all messages']);
 			const action: string = `The message wes deleted"`;
 			const logData: ILogData = getLogData(action);
-			dispatch(addLog(logData));
+			addLog(logData);
 		}
 	});
 	

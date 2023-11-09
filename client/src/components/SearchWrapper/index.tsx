@@ -1,16 +1,12 @@
-import useUserFunctions from '@utils/hooks/useUserFunctions';
-import styles from '@pages/UserPage/UserPage.module.scss';
+import styles from '@pages/MainPage/UserPage.module.scss';
 import appStyles from '@/App.module.scss';
 import { filterItems } from '@assets/consts';
+import { ComponentType } from 'react';
+import useActiveSearch from '@utils/hooks/useActiveSearch';
 
-const SearchWrapper = () => {
-	const { searchHandler, search, mutate, activeCategory, setActiveCategory } = useUserFunctions();
-	
+const SearchWrapper: ComponentType = () => {
+	const { search, searchHandler, activeCategory, chooseActiveCategory } = useActiveSearch();
 	const activeCategoryStyles = (activeName: string): string => activeCategory === activeName ? styles.active : '';
-	const chooseActiveCategory = (activeName: string) => {
-		setActiveCategory(activeName);
-		mutate({ filterData: activeName, key:'category' })
-	};
 	
 	return (
 		<div className={ styles.searchWrapper }>

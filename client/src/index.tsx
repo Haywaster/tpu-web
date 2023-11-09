@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { store } from '@redux/store';
 import { Provider } from 'react-redux';
 
-import UserPage from '@pages/UserPage';
+import MainPage from 'pages/MainPage';
 import AdminPage from '@pages/AdminPage';
 import AuthorizationPage from '@pages/AuthorizationPage';
 import ErrorPage from '@pages/ErrorPage';
@@ -27,7 +27,7 @@ const queryClient = new QueryClient();
 const routes = (
 	<>
 		{/* Главные */}
-		<Route path={AppRoutes.MAIN} element={<UserPage />} />
+		<Route path={AppRoutes.MAIN} element={<MainPage />} />
 		<Route path={AppRoutes.LENDING} element={<LendingPage />} />
 		{/* Регистрация, авторизация */}
 		<Route path={AppRoutes.AUTHORIZATION} element={<AuthorizationPage />} />
