@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ICardData, IMessagePost } from '@types';
+import { ICardData, IMessagePostForBack } from '@types';
 
 export const url = 'http://localhost:3001/';
 axios.defaults.baseURL = url;
@@ -11,17 +11,15 @@ export const PostService = {
 		return { data };
 	},
 	
-	async post(body: IMessagePost) {
-		const { data } = await axios.post<ICardData>('/messages', body, {
-			headers: {
-				'Content-type': 'application/json; charset=UTF-8'
-			}
+	async post(body: IMessagePostForBack) {
+		const { data } = await axios.post<ICardData>('api/posts', body, {
+			headers: { 'Content-type': 'multipart/form-data' }
 		});
 		return data;
 	},
 	
 	async delete(id: string) {
-		const { data } = await axios.delete<ICardData>(`/messages/${ id }`);
+		const { data } = await axios.delete<ICardData>(`/api/posts/${ id }`);
 		return data;
 	}
 };

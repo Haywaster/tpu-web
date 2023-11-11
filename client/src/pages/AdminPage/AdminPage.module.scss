@@ -1,9 +1,5 @@
 .adminWrapper {
-  composes: userMessageWrapper from '../MainPage/UserPage.module.scss';
-  justify-content: space-between;
-  height: 250px;
-  flex-direction: row;
-  width: 70%;
+  composes: userMessageWrapper from '../MainPage/MainPage.module.scss';
 }
 
 .form {
@@ -34,11 +30,37 @@
   }
 }
 
-.input {
+.input, .select, .fileInput, .textarea {
   composes: input from 'App.module.scss';
   height: 20px;
   font-size: 12pt;
   width: -webkit-fill-available;
+}
+
+.textarea {
+  min-height: 100px;
+}
+
+.fileInput {
+  width: 50%;
+  align-self: flex-start;
+  margin-top: 20px;
+  background-color: rgba(96, 222, 92, 0.39);
+
+  input {
+    display: none;
+  }
+
+  label {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+  }
+}
+
+.select {
+  cursor: pointer;
+  height: 40px;
 }
 
 .authorizationForm {
@@ -53,4 +75,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

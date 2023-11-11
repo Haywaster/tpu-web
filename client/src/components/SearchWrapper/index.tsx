@@ -1,4 +1,4 @@
-import styles from '@pages/MainPage/UserPage.module.scss';
+import styles from '@pages/MainPage/MainPage.module.scss';
 import appStyles from '@/App.module.scss';
 import { filterItems } from '@assets/consts';
 import { ComponentType } from 'react';

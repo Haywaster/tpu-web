@@ -50,6 +50,10 @@
   }
 }
 
+h1 {
+  color: yellow;
+}
+
 @media (max-width: 1200px) {
   .searchWrapper {
     flex-direction: column-reverse;

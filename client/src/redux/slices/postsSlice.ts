@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface IPostState {
 	activeCategory: string;
-	searchValue: string
+	searchValue: string;
 }
 
 const initialState: IPostState = {

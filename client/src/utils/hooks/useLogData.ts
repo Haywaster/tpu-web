@@ -2,7 +2,7 @@ import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
 
 const useLogData = () => {
-	const { actions } = useSelector((state:RootState) => state.log);
+	const { actions } = useSelector((state: RootState) => state.log);
 	
 	const downloadLogs = () => {
 		const logData = actions?.map((action) => {

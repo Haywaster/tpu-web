@@ -2,8 +2,9 @@ import Layout from '@components/Layout';
 import { aboutPageText } from '@assets/consts';
 import styles from './AboutPage.module.scss';
 import { AboutInfo } from '@assets/enums';
+import { ComponentType } from 'react';
 
-const AboutPage = () => {
+const AboutPage: ComponentType = () => {
 	return (
 		<Layout>
 			<div className={ styles.aboutWrapper }>

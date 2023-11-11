@@ -20,7 +20,7 @@ export enum AppRoutes {
 	ERROR = '/*',
 }
 
-export const CART_ICON = BsCart2
+export const CART_ICON = BsCart2;
 
 export enum AppRouteNames {
 	MAIN = 'ClockClick',

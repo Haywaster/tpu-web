@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import useFindRole from '@utils/hooks/useFindRole';
 import { linksConfig } from '@assets/consts';
 import { AppRouteNames, CART_ICON as Cart } from '@assets/enums';
-import { ILinkConfig } from '@/@types';
+import { ILinkConfig } from '@types';
 
 const usePathname = () => {
 	const { pathname } = useLocation();
@@ -24,15 +24,14 @@ const usePathname = () => {
 				item.label === AppRouteNames.MAIN ||
 				item.label === AppRouteNames.CONTACTS ||
 				item.label === AppRouteNames.ABOUT ||
-				item.label === Cart)
-		}
-		else if (role === 'admin') {
+				item.label === Cart);
+		} else if (role === 'admin') {
 			return linksConfig.filter(item =>
 				item.label === AppRouteNames.MAIN ||
 				item.label === AppRouteNames.ADMIN ||
-				item.label === Cart)
+				item.label === Cart);
 		}
-		return linksConfig
+		return linksConfig;
 	};
 	
 	const currentLinks: ILinkConfig[] = getVarMatchLinks();

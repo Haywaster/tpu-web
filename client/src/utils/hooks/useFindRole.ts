@@ -14,4 +14,4 @@ const useFindRole = () => {
 	return { role: 'admin' };
 };
 
-export default useFindRole
+export default useFindRole;

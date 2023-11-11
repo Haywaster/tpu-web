@@ -5,9 +5,12 @@ import appStyles from '@/App.module.scss';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { url } from '@service/PostService';
 import useCartData from '@utils/hooks/useCartData';
+import useDeletePost from '@utils/hooks/useDeletePost';
+import { ImCross } from 'react-icons/im';
 
 const CardItem: ComponentType<ICardData> = ({ image, name, description, price, category, _id }) => {
-	const { cart, addItem, deleteItem } = useCartData();
+	const { cart, addItemInCart, deleteItemFromCart } = useCartData();
+	const { deleteItemInProject } = useDeletePost();
 	const [isBackSide, setIsBackSide] = useState(false);
 	const [isItemInCart, setIsItemInCart] = useState(false);
 	
@@ -16,9 +19,14 @@ const CardItem: ComponentType<ICardData> = ({ image, name, description, price, c
 	const isItemInCartHandler = (e: MouseEvent) => {
 		e.stopPropagation();
 		setIsItemInCart(prev => {
-			!prev ? addItem(_id) : deleteItem(_id);
+			!prev ? addItemInCart(_id) : deleteItemFromCart(_id);
 			return !prev;
 		});
+	};
+	
+	const deleteItemHandler = (e: MouseEvent) => {
+		e.stopPropagation();
+		deleteItemInProject(_id);
 	};
 	
 	useEffect(() => {
@@ -34,9 +42,12 @@ const CardItem: ComponentType<ICardData> = ({ image, name, description, price, c
 			onClick={ onChangeCardSide }>
 			
 			<div className={ appStyles.frontSide }>
-				{ !isItemInCart ?
-					<AiOutlineHeart onClick={ isItemInCartHandler } className={ appStyles.heart }/> :
-					<AiFillHeart onClick={ isItemInCartHandler } className={ appStyles.heart }/> }
+				<div className={ appStyles.icons }>
+					{ !isItemInCart ?
+						<AiOutlineHeart onClick={ isItemInCartHandler } className={ appStyles.heart }/> :
+						<AiFillHeart onClick={ isItemInCartHandler } className={ appStyles.heart }/> }
+					<ImCross onClick={ deleteItemHandler } className={ appStyles.cross }/>
+				</div>
 				<img className={ appStyles.image }
 					src={ url + image }
 					alt={ name }/>

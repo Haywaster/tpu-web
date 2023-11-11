@@ -9,11 +9,13 @@ export interface ICardData {
 	category: string
 }
 
-export interface IMessageSend extends Omit<ICardData, 'keywords' | 'id'> {
-	keywords: string;
+export interface IMessagePost extends Omit<ICardData, '_id' | 'image'> {
+	image: FileList;
 }
 
-export interface IMessagePost extends Omit<ICardData, 'id'> {}
+export interface IMessagePostForBack extends Omit<IMessagePost, 'image'> {
+	image: File;
+}
 
 export interface IAdminFormData {
 	login: string;
@@ -33,7 +35,7 @@ export interface ILogData {
 }
 
 export interface ILinkConfig {
-	label: string | FC
+	label: string | FC;
 	path: string;
 }
 
@@ -45,5 +47,6 @@ export interface IFilterData {
 export interface IQueryParams {
 	category: string;
 	search: string;
+	
 	[key: string]: string | undefined;
 }

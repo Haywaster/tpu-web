@@ -6,31 +6,25 @@ const useCartData = () => {
 	
 	const { isLoading, isError, data: cart } = useQuery(
 		['getAllCards'],
-		() => (
-			CartService.getAll())
-		,
+		() => CartService.getAll(),
 		{ select: ({ data }) => data }
 	);
 	
-	const { mutate: addItem } = useMutation(
+	const { mutate: addItemInCart } = useMutation(
 		['addInCart'],
-		(id: string) => (
-			CartService.addToCart(id)
-		)
+		(id: string) => CartService.addToCart(id)
 	);
 	
-	const { mutate: deleteItem } = useMutation(
+	const { mutate: deleteItemFromCart } = useMutation(
 		['deleteItem'],
-		(id: string) => (
-			CartService.delete(id)
-		), {
+		(id: string) => CartService.delete(id), {
 			onSuccess: () => {
 				queryClient.invalidateQueries(['getAllCards']);
 			}
 		}
 	);
 	
-	return { isLoading, isError, cart, addItem, deleteItem };
+	return { isLoading, isError, cart, addItemInCart, deleteItemFromCart };
 };
 
 export default useCartData;

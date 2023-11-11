@@ -26,20 +26,20 @@ const queryClient = new QueryClient();
 
 const routes = (
 	<>
-		{/* Главные */}
-		<Route path={AppRoutes.MAIN} element={<MainPage />} />
-		<Route path={AppRoutes.LENDING} element={<LendingPage />} />
-		{/* Регистрация, авторизация */}
-		<Route path={AppRoutes.AUTHORIZATION} element={<AuthorizationPage />} />
-		<Route path={AppRoutes.REGISTRATION} element={<RegistrationPage />} />
-		{/* Для пользователя */}
-		<Route path={AppRoutes.ABOUT} element={<AboutPage />} />
-		<Route path={AppRoutes.CART} element={<CartPage />} />
-		{/* Для админа */}
-		<Route path={AppRoutes.CONTACTS} element={<ContactsPage />} />
-		<Route path={AppRoutes.ADMIN} element={<AdminPage />} />
-		{/* Остальные */}
-		<Route path={AppRoutes.ERROR} element={<ErrorPage />} />
+		{/* Главные */ }
+		<Route path={ AppRoutes.MAIN } element={ <MainPage/> }/>
+		<Route path={ AppRoutes.LENDING } element={ <LendingPage/> }/>
+		{/* Регистрация, авторизация */ }
+		<Route path={ AppRoutes.AUTHORIZATION } element={ <AuthorizationPage/> }/>
+		<Route path={ AppRoutes.REGISTRATION } element={ <RegistrationPage/> }/>
+		{/* Для пользователя */ }
+		<Route path={ AppRoutes.ABOUT } element={ <AboutPage/> }/>
+		<Route path={ AppRoutes.CONTACTS } element={ <ContactsPage/> }/>
+		<Route path={ AppRoutes.CART } element={ <CartPage/> }/>
+		{/* Для админа */ }
+		<Route path={ AppRoutes.ADMIN } element={ <AdminPage/> }/>
+		{/* Остальные */ }
+		<Route path={ AppRoutes.ERROR } element={ <ErrorPage/> }/>
 	</>
 );
 

@@ -4,6 +4,7 @@ header {
 
 .btn {
   composes: btn from 'App.module.scss';
+
   &:hover {
     scale: none;
   }

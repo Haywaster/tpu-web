@@ -22,7 +22,7 @@ export const linksConfig: ILinkConfig[] = [
 	{ label: AppRouteNames.ABOUT, path: AppRoutes.ABOUT },
 	{ label: AppRouteNames.CONTACTS, path: AppRoutes.CONTACTS },
 	{ label: AppRouteNames.ADMIN, path: AppRoutes.ADMIN },
-	{ label: Cart, path: AppRoutes.CART },
+	{ label: Cart, path: AppRoutes.CART }
 ];
 
 export const filterItems: string[] = [
