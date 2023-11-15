@@ -5,8 +5,12 @@ import Loader from '@components/Loader';
 import { AppNotification } from '@assets/enums';
 import appStyles from '@/App.module.scss';
 import CardItem from '@components/CardItem';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/store';
 
 const CardItems: ComponentType = () => {
+	const { userData } = useSelector((state: RootState) => state.workspace);
+	const isAdmin = userData?.roles?.[0] === 'ADMIN';
 	const { cards, isError, isLoading } = useAllPosts();
 	const hasCards = cards && cards.length > 0;
 	
@@ -22,7 +26,7 @@ const CardItems: ComponentType = () => {
 		!hasCards ?
 			<p className={ appStyles.noCardsError }>{ AppNotification.NO_MESSAGE }</p> :
 			<div className={ appStyles.cards }>
-				{ cards.map((message) => <CardItem key={ message._id } { ...message } />) }
+				{ cards.map((message) => <CardItem isAdmin={ isAdmin } key={ message._id } { ...message } />) }
 			</div>
 	);
 };

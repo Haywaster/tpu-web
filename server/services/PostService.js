@@ -14,7 +14,16 @@ class PostService {
 				query.category = category;
 			}
 			if (search) {
-				query.name = { $regex: search, $options: 'i' };
+				const isNumeric = !isNaN(search);
+				if (isNumeric) {
+					const price = parseFloat(search);
+					query.price = {
+						$gte: price,          // Больше или равно введенной цене
+						$lt: price + 1        // Меньше чем следующее значение
+					};
+				} else {
+					query.name = { $regex: search, $options: 'i' };
+				}
 			}
 			return Post.find(query);
 		}

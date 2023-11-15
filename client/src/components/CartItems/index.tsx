@@ -4,11 +4,16 @@ import { AppNotification } from '@assets/enums';
 import useCartData from '@utils/hooks/useCartData';
 import { ICardData } from '@types';
 import CartItem from '@components/CartItem';
+import { logActions } from '@redux/slices/logSlice';
+import useActions from '@utils/hooks/useActions';
 
 const CartItems = () => {
 	const { cart, isLoading, isError, deleteItemFromCart } = useCartData();
-	
-	const onDeleteItem = (id: string) => deleteItemFromCart(id);
+	const {removeCartItemCounter} = useActions()
+	const onDeleteItem = (id: string) => {
+		deleteItemFromCart(id);
+		removeCartItemCounter()
+	};
 	
 	const calculateTotalPrice = (cart?: ICardData[]): number => (
 		cart ? Number(cart.reduce((acc, item) => acc + item.price, 0).toFixed(2)) : 0
@@ -41,7 +46,7 @@ const CartItems = () => {
 			{ cartContent }
 			{ cart && cart.length !== 0 &&
 				<p className={ styles.result }>Total count:
-					<span>{ cart.length }</span> by price <span>{ totalPrice + 1 }</span>
+					<span> { cart.length }</span> by price <span>{ totalPrice }</span>
 				</p> }
 		</div>
 	);

@@ -1,25 +1,22 @@
-import axios from 'axios';
 import { ICardData, IMessagePostForBack } from '@types';
-
-export const url = 'http://localhost:3001/';
-axios.defaults.baseURL = url;
+import $api from '@services/http';
 
 export const PostService = {
 	async getAll(queryString?: string) {
 		const url = `api/posts${ queryString ? `?${ queryString }` : '' }`;
-		const { data } = await axios<ICardData[]>(url);
-		return { data };
+		const { data } = await $api<ICardData[]>(url);
+		return data;
 	},
 	
 	async post(body: IMessagePostForBack) {
-		const { data } = await axios.post<ICardData>('api/posts', body, {
+		const { data } = await $api.post<ICardData>('api/posts', body, {
 			headers: { 'Content-type': 'multipart/form-data' }
 		});
 		return data;
 	},
 	
 	async delete(id: string) {
-		const { data } = await axios.delete<ICardData>(`/api/posts/${ id }`);
+		const { data } = await $api.delete<ICardData>(`/api/posts/${ id }`);
 		return data;
 	}
 };

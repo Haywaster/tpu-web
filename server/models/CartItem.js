@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import { model, Schema } from 'mongoose';
 
-const CartItem = new mongoose.Schema({
+const CartItem = new Schema({
 	name: { type: String, required: true },
 	description: { type: String, required: true },
 	price: { type: Number, required: true },
@@ -8,4 +8,4 @@ const CartItem = new mongoose.Schema({
 	image: { type: String }
 });
 
-export default mongoose.model('CartItem', CartItem);
+export default model('CartItem', CartItem);

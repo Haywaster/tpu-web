@@ -1,7 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { CartService } from '@service/CartService';
+import { CartService } from '@/services/CartService';
+import useActions from '@utils/hooks/useActions';
+import { useEffect } from 'react';
 
 const useCartData = () => {
+	const { setCartItemCounter} = useActions()
 	const queryClient = useQueryClient();
 	
 	const { isLoading, isError, data: cart } = useQuery(
@@ -23,6 +26,12 @@ const useCartData = () => {
 			}
 		}
 	);
+	
+	useEffect(() => {
+		if (cart) {
+			setCartItemCounter(cart.length)
+		}
+	}, [cart]);
 	
 	return { isLoading, isError, cart, addItemInCart, deleteItemFromCart };
 };

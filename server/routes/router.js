@@ -1,6 +1,6 @@
 import Router from 'express';
-import PostController from './controllers/PostController.js';
-import CartController from './controllers/CartController.js';
+import PostController from '../controllers/PostController.js';
+import CartController from '../controllers/CartController.js';
 
 const router = new Router();
 

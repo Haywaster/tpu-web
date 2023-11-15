@@ -17,9 +17,17 @@ export interface IMessagePostForBack extends Omit<IMessagePost, 'image'> {
 	image: File;
 }
 
-export interface IAdminFormData {
-	login: string;
+export interface ILoginFormData {
+	username: string;
 	password: string;
+}
+
+export interface IUserData {
+	_id: string;
+	username: string;
+	password: string;
+	roles: string[];
+	__v: number;
 }
 
 export interface ILinks {
@@ -39,14 +47,8 @@ export interface ILinkConfig {
 	path: string;
 }
 
-export interface IFilterData {
-	filterData: string;
-	key: string;
-}
-
 export interface IQueryParams {
 	category: string;
 	search: string;
-	
 	[key: string]: string | undefined;
 }

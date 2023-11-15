@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IMessagePost, IMessagePostForBack } from '@types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { PostService } from '@service/PostService';
+import { PostService } from '@/services/PostService';
 
 const useCreatePost = () => {
 	const { register, handleSubmit, reset, watch } = useForm<IMessagePost>();

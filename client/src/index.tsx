@@ -11,12 +11,12 @@ import ErrorPage from '@pages/ErrorPage';
 import AboutPage from '@pages/AboutPage';
 import ContactsPage from '@pages/ContactPage';
 import CartPage from '@pages/CartPage';
-import LendingPage from '@pages/LendingPage';
+import RegistrationPage from '@pages/RegistrationPage';
 
 import { AppRoutes } from '@assets/enums';
 
 import './index.css';
-import RegistrationPage from '@pages/RegistrationPage';
+import { ReactNode } from 'react';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -28,7 +28,6 @@ const routes = (
 	<>
 		{/* Главные */ }
 		<Route path={ AppRoutes.MAIN } element={ <MainPage/> }/>
-		<Route path={ AppRoutes.LENDING } element={ <LendingPage/> }/>
 		{/* Регистрация, авторизация */ }
 		<Route path={ AppRoutes.AUTHORIZATION } element={ <AuthorizationPage/> }/>
 		<Route path={ AppRoutes.REGISTRATION } element={ <RegistrationPage/> }/>
@@ -45,10 +44,14 @@ const routes = (
 
 const router = createBrowserRouter(createRoutesFromElements(routes));
 
-root.render(
-	<Provider store={ store }>
-		<QueryClientProvider client={ queryClient }>
-			<RouterProvider router={ router }/>
-		</QueryClientProvider>
-	</Provider>
-);
+const App = (): ReactNode => {
+	return (
+		<Provider store={ store }>
+			<QueryClientProvider client={ queryClient }>
+				<RouterProvider router={ router }/>
+			</QueryClientProvider>
+		</Provider>
+	);
+};
+
+root.render(App());

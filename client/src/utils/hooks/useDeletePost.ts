@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { PostService } from '@service/PostService';
+import { PostService } from '@/services/PostService';
 
 const useDeletePost = () => {
 	const queryClient = useQueryClient();

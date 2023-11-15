@@ -1,5 +1,6 @@
 import { postActions } from '@redux/slices/postsSlice';
 import { logActions } from '@redux/slices/logSlice';
+import { workspaceActions } from '@redux/slices/workspaceSlice';
 
 import { bindActionCreators } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
@@ -7,7 +8,8 @@ import { useMemo } from 'react';
 
 const allActions = {
 	...postActions,
-	...logActions
+	...logActions,
+	...workspaceActions
 };
 
 const useActions = () => {

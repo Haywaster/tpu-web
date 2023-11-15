@@ -1,12 +1,18 @@
 import styles from './LendingPage.module.scss';
 import lendingVideo from '@assets/video/lending.mp4';
-import Layout from '@components/Layout';
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '@assets/enums';
+import useActions from '@utils/hooks/useActions';
 
 const LendingPage = () => {
+	const { setIsLending } = useActions();
+	
+	const handleLending = () => {
+		setIsLending(false);
+	};
+	
 	return (
-		<Layout>
+		<main className={ styles.lendingPage }>
 			<video className={ styles.bgVideo } loop={ true } muted={ true } autoPlay={ true } src={ lendingVideo }/>
 			<div className={ styles.welcome }>
 				<h1>DESIGN IN MOTION</h1>
@@ -15,9 +21,10 @@ const LendingPage = () => {
 				<div className={ styles.btnWrapper }>
 					<Link to={ AppRoutes.REGISTRATION } className={ styles.btn }>Registration</Link>
 					<Link to={ AppRoutes.AUTHORIZATION } className={ styles.btn }>Authorization</Link>
+					<button onClick={ handleLending } className={ styles.btn }>Get to watches!</button>
 				</div>
 			</div>
-		</Layout>
+		</main>
 	);
 };
 

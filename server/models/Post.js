@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import { model, Schema } from 'mongoose';
 
-const Post = new mongoose.Schema({
+const Post = new Schema({
 	name: { type: String, required: true },
 	description: { type: String, required: true },
 	price: { type: Number, required: true },
@@ -8,4 +8,4 @@ const Post = new mongoose.Schema({
 	image: { type: String }
 });
 
-export default mongoose.model('Post', Post);
+export default model('Post', Post);

@@ -14,8 +14,8 @@
 			"@components/*": [
 				"components/*"
 			],
-			"@service/*": [
-				"service/*"
+			"@services/*": [
+				"services/*"
 			],
 			"@utils/*": [
 				"utils/*"

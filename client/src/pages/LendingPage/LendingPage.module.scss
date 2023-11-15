@@ -39,9 +39,16 @@
 .btnWrapper {
   display: flex;
   gap: 50px;
-  width: 100%;
+  width: max-content;
 
   .btn {
     font-size: 15pt;
   }
+}
+
+.lendingPage {
+  display: flex;
+  align-items: flex-end;
+  padding: 100px;
+  height: 70vh
 }

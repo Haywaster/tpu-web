@@ -39,3 +39,15 @@ h1, h2, h3, h4, h5, h6, p {
 input, button, textarea, select {
     font-family: 'Raleway', sans-serif;
 }
+
+button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}

@@ -11,7 +11,7 @@ header {
 }
 
 .navPanel {
-  font-size: 18px;
+  font-size: 23px;
   padding: 10px 50px;
   border-bottom: 1px solid;
   background-color: #0000001c;
@@ -33,26 +33,20 @@ header {
       color: #FFFF
     }
   }
-}
-
-.lending {
-  height: 100vh;
-
-  header {
-    position: absolute;
-  }
-
-  main {
-    display: flex;
-    align-items: flex-end;
-    padding: 100px;
-    height: -webkit-fill-available;
+  button {
+    cursor: pointer;
+    color: white;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-size: 23px;
   }
 }
 
 .registration {
   height: 100vh;
-  background: linear-gradient(90deg, #adeaaf, #5e9666, #3481bd);
+  background: linear-gradient(90deg, #6c6e6c, #1a1a1a, #000000);
   display: flex;
   justify-content: center;
   flex-direction: column;

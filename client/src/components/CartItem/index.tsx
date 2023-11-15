@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 import styles from '@pages/CartPage/CartPage.module.scss';
-import { url } from '@service/PostService';
+import { API_URL as url } from '@services/http';
 import { ImCross } from 'react-icons/im';
 import { ICardData } from '@types';
 

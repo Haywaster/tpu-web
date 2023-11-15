@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { PostService } from '@service/PostService';
+import { PostService } from '@/services/PostService';
 import { buildQueryString } from '@utils/libs/buildQuetyString';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
@@ -16,10 +16,7 @@ const useAllPosts = () => {
 	const { isLoading, isError, data: cards } = useQuery(
 		['getAllPosts', queryString],
 		() => isAdmin ? PostService.getAll() : PostService.getAll(queryString),
-		{
-			select: ({ data }) => data,
-			refetchOnWindowFocus: false
-		}
+		{ refetchOnWindowFocus: false }
 	);
 	
 	return { isLoading, isError, cards };

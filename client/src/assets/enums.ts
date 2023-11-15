@@ -10,7 +10,6 @@ export enum AboutInfo {
 
 export enum AppRoutes {
 	MAIN = '/',
-	LENDING = '/lending',
 	REGISTRATION = '/registration',
 	AUTHORIZATION = '/authorization',
 	ABOUT = '/about',
@@ -29,6 +28,7 @@ export enum AppRouteNames {
 	ABOUT = 'About',
 	CONTACTS = 'Contacts',
 	ADMIN = 'Admin func',
+	LOGOUT = 'Logout',
 }
 
 export const enum AppNotification {

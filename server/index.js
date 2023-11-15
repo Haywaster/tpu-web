@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import router from './router.js';
+import router from './routes/router.js';
+import authRouter from './routes/authRouter.js';
 import fileUpload from 'express-fileupload';
 
 const PORT = process.env.PORT ?? 3001;
@@ -12,7 +13,9 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('static'))
 app.use(fileUpload({}))
+
 app.use('/api', router)
+app.use("/auth", authRouter)
 
 const startApp = async () => {
 	try {
