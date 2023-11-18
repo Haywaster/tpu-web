@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
 import { secret } from '../config.js';
+import CartService from '../services/CartService.js';
 
 const generateAccessToken = (id, roles) => {
 	const payload = { id, roles };
@@ -26,6 +27,9 @@ class authController {
 			const userRole = await Role.findOne({ value: 'USER' });
 			const user = new User({ username, password: hashPassword, roles: [userRole.value] });
 			await user.save();
+			//Создание корзины за текущим юзером
+			const userId = user._id;
+			await CartService.createCart(userId)
 			return res.json({ message: 'Пользователь успешно зарегистрирован' });
 		} catch (e) {
 			console.log(e);
@@ -64,7 +68,6 @@ class authController {
 	async getUserInfo(req, res) {
 		try {
 			const user = await User.findById(req.user.id);
-			console.log(user);
 			res.json(user);
 		} catch (e) {
 			console.log(e);

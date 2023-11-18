@@ -4,21 +4,32 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { LoginService } from '@/services/LoginService';
 import { AppRoutes } from '@assets/enums';
+import { AxiosError } from 'axios';
+
+interface ICustomError {
+	message: string;
+}
 
 const useRegistration = () => {
-	const { register, handleSubmit } = useForm<ILoginFormData>();
+	const { register, handleSubmit, formState: { errors }, setError } = useForm<ILoginFormData>();
 	const navigate = useNavigate();
 	
-	const { mutate: postRegisterData } = useMutation(
+	const { mutate: postRegisterData, isLoading: isLoadingRegister } = useMutation(
 		['registration'],
 		(body: ILoginFormData) => LoginService.registration(body),
 		{
-			onSuccess() {
-				navigate(AppRoutes.AUTHORIZATION);
+			onSuccess(token) {
+				localStorage.setItem('token', token);
+				navigate(AppRoutes.MAIN);
+			},
+			onError(error: AxiosError<ICustomError>) {
+				setError('root.registrationError', {
+					message: error.response?.data.message
+				});
 			}
 		});
 	
-	const { mutate: postLoginData } = useMutation(
+	const { mutate: postLoginData, isLoading: isLoadingLogin } = useMutation(
 		['authorization'],
 		(body: ILoginFormData) => LoginService.authorization(body),
 		{
@@ -28,7 +39,7 @@ const useRegistration = () => {
 			}
 		});
 	
-	return { handleSubmit, register, postRegisterData, postLoginData };
+	return { handleSubmit, register, postRegisterData, postLoginData, isLoadingRegister, isLoadingLogin, errors };
 };
 
 export default useRegistration;

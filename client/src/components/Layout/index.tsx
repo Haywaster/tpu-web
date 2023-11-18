@@ -30,6 +30,12 @@ const Layout: ComponentType<IProps> = ({ children }) => {
 	const navigate = useNavigate();
 	
 	useEffect(() => {
+		if (userInfo) {
+			setUserData(userInfo);
+		}
+	}, [userInfo]);
+	
+	useEffect(() => {
 		if (!token && isFirstLoginNotice) {
 			setTimeout(() => {
 				toast('Please log in to shop.', {
@@ -49,12 +55,6 @@ const Layout: ComponentType<IProps> = ({ children }) => {
 			setFirstSuccessNotice(false);
 		}
 	}, []);
-	
-	useEffect(() => {
-		if (userInfo) {
-			setUserData(userInfo);
-		}
-	}, [userInfo]);
 	
 	const projectStyles =
 		isRegistration || isAuthorization ? styles.registration :

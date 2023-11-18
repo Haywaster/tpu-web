@@ -3,9 +3,19 @@ import adminStyles from '@pages/AdminPage/AdminPage.module.scss';
 import useRegistration from '@utils/hooks/useRegistration';
 import { SubmitHandler } from 'react-hook-form';
 import { ILoginFormData } from '@/@types';
+import Loader from '@components/Loader';
+import { ErrorMessage } from '@hookform/error-message';
+
+interface IErrors {
+	root: {
+		registrationError: {
+			message: string;
+		};
+	};
+}
 
 const RegistrationPage = () => {
-	const { register, handleSubmit, postRegisterData } = useRegistration();
+	const { register, handleSubmit, postRegisterData, isLoadingRegister, errors } = useRegistration();
 	
 	const onSubmit: SubmitHandler<ILoginFormData> = data => {
 		postRegisterData(data);
@@ -17,7 +27,8 @@ const RegistrationPage = () => {
 				<h3>Registration</h3>
 				<input required placeholder='Login' className={ adminStyles.input } { ...register('username') } />
 				<input required type='password' placeholder='Password' className={ adminStyles.input } { ...register('password') } />
-				<input className={ adminStyles.btn } type='submit' value='Registration'/>
+				<ErrorMessage errors={errors as IErrors} name={'root.registrationError'}/>
+				{isLoadingRegister ? <Loader/> :<input className={ adminStyles.btn } type='submit' value='Registration'/>}
 			</form>
 		</Layout>
 	);

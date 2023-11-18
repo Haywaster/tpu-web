@@ -9,11 +9,18 @@ const AboutPage: ComponentType = () => {
 		<Layout>
 			<div className={ styles.aboutWrapper }>
 				<h2>{ AboutInfo.HEADER }</h2>
-				<p>{ AboutInfo.WELCOME }</p>
-				<p>{ AboutInfo.EXPECTATION }</p>
-				<ol>{ aboutPageText.map((text, index) => <li key={ index }>{ text }</li>) }</ol>
-				<p>{ AboutInfo.MISSION }</p>
-				<p>{ AboutInfo.CONCLUSION }</p>
+				
+				<strong>{ AboutInfo.WELCOME }</strong>
+				<p>{ AboutInfo.WELCOME_DESC }</p>
+				
+				<strong>{ AboutInfo.COLLECTION }</strong>
+				<p>{ AboutInfo.COLLECTION_DESC }</p>
+				
+				<strong>{ AboutInfo.DISCOVER }</strong>
+				<p>{ AboutInfo.DISCOVER_DESC }</p>
+				
+				<strong>{ AboutInfo.QUALITY }</strong>
+				<p>{ AboutInfo.QUALITY_DESC }</p>
 			</div>
 		</Layout>
 	);

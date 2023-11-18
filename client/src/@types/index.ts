@@ -9,6 +9,11 @@ export interface ICardData {
 	category: string
 }
 
+export interface ICartData {
+	_id: string
+	items: ICardData[]
+}
+
 export interface IMessagePost extends Omit<ICardData, '_id' | 'image'> {
 	image: FileList;
 }

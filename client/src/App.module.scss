@@ -72,12 +72,13 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    transition: 0.25s ease-in-out;
-    background-color: rgba(0, 0, 0, 0.12);
     padding: 5px;
     border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.12);
+    transition: 0.25s ease-in-out;
 
     .heart {
+      color: white;
       font-size: 40px;
       cursor: cell;
     }
@@ -86,6 +87,10 @@
       font-size: 25px;
       cursor: not-allowed;
     }
+  }
+
+  .inCart {
+    background-color: #51D75184;
   }
 }
 
@@ -99,7 +104,6 @@
   position: absolute;
   bottom: 0;
   background-color: rgb(0 0 0 / 50%);
-  transition: 0.15s ease-in-out;
   border-radius: 15px;
 }
 

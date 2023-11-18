@@ -3,10 +3,10 @@ import $api from '@services/http';
 
 export const LoginService = {
 	async registration(body: ILoginFormData) {
-		const { data } = await $api.post<{ message: string }>('auth/registration', body, {
+		await $api.post<{ message: string }>('auth/registration', body, {
 			headers: { 'Content-type': 'application/json; charset=UTF-8' }
 		});
-		return data;
+		return await LoginService.authorization(body);
 	},
 	
 	async authorization(body: ILoginFormData) {

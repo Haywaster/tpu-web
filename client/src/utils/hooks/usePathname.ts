@@ -21,7 +21,7 @@ const usePathname = () => {
 				item.label === AppRouteNames.MAIN ||
 				item.label === AppRouteNames.REGISTRATION ||
 				item.label === AppRouteNames.AUTHORIZATION);
-		else if (token && userData.roles?.[0] == 'USER') {
+		else if (token && userData.roles?.[0] === 'USER') {
 			return linksConfig.filter(item =>
 				item.label === AppRouteNames.MAIN ||
 				item.label === AppRouteNames.CONTACTS ||

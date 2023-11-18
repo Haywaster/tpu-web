@@ -2,16 +2,17 @@ import Layout from '@components/Layout';
 import styles from './MainPage.module.scss';
 import SearchWrapper from '@components/SearchWrapper';
 import CardItems from '@components/CardItems';
-import { ComponentType, useEffect } from 'react';
+import { ComponentType } from 'react';
 import LendingPage from '@pages/LendingPage';
 import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
-import { toast, Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 const MainPage: ComponentType = () => {
-	const { userData, isLending } = useSelector((state: RootState) => state.workspace);
+	const { isLending } = useSelector((state: RootState) => state.workspace);
+	const token = localStorage.getItem('token');
 	
-	if (isLending && !userData._id) {
+	if (isLending && !token) {
 		return <LendingPage/>;
 	}
 	
