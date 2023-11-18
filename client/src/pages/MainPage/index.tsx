@@ -9,8 +9,8 @@ import { useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 
 const MainPage: ComponentType = () => {
-	const { isLending } = useSelector((state: RootState) => state.workspace);
 	const token = localStorage.getItem('token');
+	const { isLending } = useSelector((state: RootState) => state.workspace);
 	
 	if (isLending && !token) {
 		return <LendingPage/>;

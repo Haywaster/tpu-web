@@ -1,7 +1,7 @@
 import { ComponentType, ReactNode, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import usePathname from '@utils/hooks/usePathname';
+import useLendingLinks from '@utils/hooks/useLendingLinks';
 
 import { ILinkConfig } from '@types';
 import styles from './Layout.module.scss';
@@ -17,6 +17,8 @@ interface IProps {
 }
 
 const Layout: ComponentType<IProps> = ({ children }) => {
+	useUserInfo()
+	
 	const token = localStorage.getItem('token');
 	const {
 		userData,
@@ -24,19 +26,13 @@ const Layout: ComponentType<IProps> = ({ children }) => {
 		isFirstLoginNotice,
 		cartItemCounter
 	} = useSelector((state: RootState) => state.workspace);
-	const { currentLinks, pathname, isRegistration, isAuthorization } = usePathname();
-	const { setUserData, removeUserData, setIsLending, setFirstLoginNotice, setFirstSuccessNotice } = useActions();
-	const { userInfo } = useUserInfo();
+	const { currentLinks, pathname, isRegistration, isAuthorization } = useLendingLinks();
+	const { removeUserData, setIsLending, setFirstLoginNotice, setFirstSuccessNotice } = useActions();
 	const navigate = useNavigate();
+	const isAdmin = userData.roles?.[0] === 'ADMIN';
 	
 	useEffect(() => {
-		if (userInfo) {
-			setUserData(userInfo);
-		}
-	}, [userInfo]);
-	
-	useEffect(() => {
-		if (!token && isFirstLoginNotice) {
+		if (!token && !userData._id && isFirstLoginNotice) {
 			setTimeout(() => {
 				toast('Please log in to shop.', {
 					icon: 'ℹ️',
@@ -48,6 +44,7 @@ const Layout: ComponentType<IProps> = ({ children }) => {
 			}, 2000);
 			setFirstLoginNotice(false);
 		}
+		
 		if (userData && token && isFirstSuccessNotice) {
 			toast.success('You have successfully logged in. You can start shopping!', {
 				duration: 3000
@@ -55,6 +52,12 @@ const Layout: ComponentType<IProps> = ({ children }) => {
 			setFirstSuccessNotice(false);
 		}
 	}, []);
+	
+	useEffect(() => {
+		if (token && isAdmin) {
+			navigate(AppRoutes.ADMIN);
+		}
+	}, [userData]);
 	
 	const projectStyles =
 		isRegistration || isAuthorization ? styles.registration :

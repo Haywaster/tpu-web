@@ -36,6 +36,11 @@ const useRegistration = () => {
 			onSuccess(token) {
 				localStorage.setItem('token', token);
 				navigate(AppRoutes.MAIN);
+			},
+			onError(error: AxiosError<ICustomError>) {
+				setError('root.loginError', {
+					message: error.response?.data.message
+				});
 			}
 		});
 	

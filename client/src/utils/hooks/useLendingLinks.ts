@@ -5,7 +5,7 @@ import { ILinkConfig } from '@types';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
 
-const usePathname = () => {
+const useLendingLinks = () => {
 	const { userData, isLending: isLendingValue } = useSelector((state: RootState) => state.workspace);
 	const { pathname } = useLocation();
 	
@@ -39,4 +39,4 @@ const usePathname = () => {
 	return { currentLinks, pathname, isLending, isRegistration, isAuthorization };
 };
 
-export default usePathname;
+export default useLendingLinks

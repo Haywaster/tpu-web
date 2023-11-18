@@ -30,7 +30,8 @@ const CardItems: ComponentType = () => {
 			<div className={ appStyles.cards }>
 				{ cards.map(message =>
 					<CardItem
-						alreadyInCart={ !!(cart && cart.items.length && cart.items.some(item => item._id === message._id)) }
+						alreadyInCart={ !!(
+							cart && cart.items.length && cart.items.some(item => item._id === message._id)) }
 						addItemInCart={ addItemInCart }
 						deleteItemFromCart={ deleteItemFromCart }
 						isAdmin={ isAdmin }

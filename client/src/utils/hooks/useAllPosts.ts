@@ -8,15 +8,16 @@ import { AppRoutes } from '@assets/enums';
 
 const useAllPosts = () => {
 	const { activeCategory, searchValue } = useSelector((state: RootState) => state.post);
+	const {userData, isLending} = useSelector((state: RootState) => state.workspace);
 	const queryString = buildQueryString(activeCategory, searchValue);
-	const location = useLocation();
+	const {pathname} = useLocation();
 	
-	const isAdmin = location.pathname === AppRoutes.ADMIN;
+	const isAdmin = pathname === AppRoutes.ADMIN;
 	
 	const { isLoading, isError, data: cards } = useQuery(
 		['getAllPosts', queryString],
 		() => isAdmin ? PostService.getAll() : PostService.getAll(queryString),
-		{ refetchOnWindowFocus: false }
+		{ refetchOnWindowFocus: false, enabled: !!userData.username || !isLending }
 	);
 	
 	return { isLoading, isError, cards };

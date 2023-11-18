@@ -4,18 +4,21 @@ import useActions from '@utils/hooks/useActions';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AppRoutes } from '@assets/enums';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/store';
 
 const useCartData = () => {
-	const token = localStorage.getItem('token');
-	const location = useLocation();
-	const isCartPage = location.pathname === AppRoutes.CART;
-	const { setCartItemCounter, addCartItemCounter, removeCartItemCounter } = useActions();
 	const queryClient = useQueryClient();
+	const token = localStorage.getItem('token');
+	const {userData} = useSelector((state: RootState) => state.workspace);
+	const { setCartItemCounter, addCartItemCounter, removeCartItemCounter } = useActions();
+	const {pathname} = useLocation();
+	const isCartPage = pathname === AppRoutes.CART;
 	
 	const { isLoading, isError, data: cart } = useQuery(
-		['getAllCards'],
+		['getAllCards', userData?.username],
 		() => CartService.getAll(),
-		{ select: ({ data }) => data, enabled: !!token, refetchOnWindowFocus: false }
+		{ select: ({ data }) => data, enabled: !!token && !!userData.username, refetchOnWindowFocus: false }
 	);
 	
 	const { mutate: addItemInCart } = useMutation(

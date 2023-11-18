@@ -1,4 +1,4 @@
-import { ComponentType, MouseEvent, useState } from 'react';
+import { ComponentType, MouseEvent, useEffect, useState } from 'react';
 import { ICardData } from '@types';
 
 import appStyles from '@/App.module.scss';
@@ -31,14 +31,15 @@ const CardItem: ComponentType<IProps> = ({
 	alreadyInCart
 }) => {
 	const token = localStorage.getItem('token');
-	const { isFirstItemInCartNotice } = useSelector((state: RootState) => state.workspace);
+	const { isFirstItemInCartNotice, cartItemCounter } = useSelector((state: RootState) => state.workspace);
 	const { setFirstItemInCartNotice } = useActions();
 	const { deleteItemInProject } = useDeletePost();
 	const [isBackSide, setIsBackSide] = useState(false);
 	const [isItemInCart, setIsItemInCart] = useState(alreadyInCart || false);
 	
-	const onChangeCardSide = () => setIsBackSide(prev => !prev);
 	const cartStyles = [appStyles.icons, isItemInCart ? appStyles.inCart : ''].join(' ');
+	
+	const onChangeCardSide = () => setIsBackSide(prev => !prev);
 	
 	const isItemInCartHandler = (e: MouseEvent) => {
 		e.stopPropagation();
@@ -47,8 +48,8 @@ const CardItem: ComponentType<IProps> = ({
 	};
 	
 	const addItemInCartHandler = (id: string) => {
-		if (isFirstItemInCartNotice) {
-			toast.success('Товар добавлен в корзину!', {
+		if (isFirstItemInCartNotice && cartItemCounter === 0) {
+			toast.success('Product added to cart!', {
 				duration: 2000
 			});
 			setFirstItemInCartNotice(false);
@@ -68,34 +69,44 @@ const CardItem: ComponentType<IProps> = ({
 		deleteItemInProject(_id);
 	};
 	
+	useEffect(() => {
+		if (alreadyInCart) {
+			setIsItemInCart(alreadyInCart);
+		}
+	}, [alreadyInCart]);
+	
 	return (
 		<div
-			className={`${appStyles.card} ${isBackSide ? appStyles.flipped : ''}`}
-			key={name}
-			onClick={onChangeCardSide}
+			className={ `${ appStyles.card } ${ isBackSide ? appStyles.flipped : '' }` }
+			key={ name }
+			onClick={ onChangeCardSide }
 		>
-			<div className={appStyles.frontSide}>
-				{token && (
-					<div className={cartStyles}>
-						{!isItemInCart ?
-							<BsCart onClick={isItemInCartHandler} className={appStyles.heart} /> :
-							<BsCartCheck onClick={isItemInCartHandler} className={appStyles.heart} />
-						}
-						{isAdmin && <ImCross onClick={deleteItemHandler} className={appStyles.cross} />}
+			<div className={ appStyles.frontSide }>
+				{ token && (
+					<div className={ cartStyles }>
+						{!isAdmin && (
+							<>
+								{ !isItemInCart ?
+									<BsCart onClick={ isItemInCartHandler } className={ appStyles.heart }/> :
+									<BsCartCheck onClick={ isItemInCartHandler } className={ appStyles.heart }/>
+								}
+							</>
+						)}
+						{ isAdmin && <ImCross onClick={ deleteItemHandler } className={ appStyles.cross }/> }
 					</div>
-				)}
-				<img className={appStyles.image}
-					src={url + image}
-					alt={name}
+				) }
+				<img className={ appStyles.image }
+					src={ url + image }
+					alt={ name }
 				/>
-				<div className={appStyles.titleWrapper}>
-					<h2>{name}</h2>
-					<p>{price} $</p>
+				<div className={ appStyles.titleWrapper }>
+					<h2>{ name }</h2>
+					<p>{ price } $</p>
 				</div>
 			</div>
-			<div className={appStyles.backSide}>
-				<h3>{category}</h3>
-				<p>{description}</p>
+			<div className={ appStyles.backSide }>
+				<h3>{ category }</h3>
+				<p>{ description }</p>
 			</div>
 		</div>
 	);
