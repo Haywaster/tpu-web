@@ -62,6 +62,7 @@ const App: FC = () => {
 	return (
 		<div className='app'>
 			<div className='wrapper'>
+				<h1 style={{textAlign: 'center'}}>Это лабораторная работа №1 по дисциплине "Облачные технологии"</h1>
 				<p className='header'>{ !isClear ? `This is "${ text }"` : text }</p>
 				<form className='form'>
 					<Select className='select'
